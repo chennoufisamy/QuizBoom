@@ -1,1 +1,1 @@
-# QuizzBoom
+# QuizBoom
