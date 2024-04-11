@@ -13,6 +13,7 @@
 		A1726F582BBC3453003645FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1726F562BBC3453003645FC /* Main.storyboard */; };
 		A1726F5A2BBC3454003645FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1726F592BBC3454003645FC /* Assets.xcassets */; };
 		A1726F5D2BBC3454003645FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1726F5B2BBC3454003645FC /* LaunchScreen.storyboard */; };
+		A1A9287F2BC7DE71007CE284 /* AttaquerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9287E2BC7DE71007CE284 /* AttaquerController.swift */; };
 		A1E6544A2BC56D4A0089E555 /* SelectPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E654492BC56D4A0089E555 /* SelectPlayerController.swift */; };
 		A1E6544C2BC577C50089E555 /* QuizController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E6544B2BC577C50089E555 /* QuizController.swift */; };
 /* End PBXBuildFile section */
@@ -26,6 +27,7 @@
 		A1726F592BBC3454003645FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1726F5C2BBC3454003645FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A1726F5E2BBC3454003645FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1A9287E2BC7DE71007CE284 /* AttaquerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttaquerController.swift; sourceTree = "<group>"; };
 		A1E654492BC56D4A0089E555 /* SelectPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPlayerController.swift; sourceTree = "<group>"; };
 		A1E6544B2BC577C50089E555 /* QuizController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,6 +66,7 @@
 				A1726F522BBC3453003645FC /* SceneDelegate.swift */,
 				A1726F542BBC3453003645FC /* ViewController.swift */,
 				A1726F562BBC3453003645FC /* Main.storyboard */,
+				A1A9287E2BC7DE71007CE284 /* AttaquerController.swift */,
 				A1E654492BC56D4A0089E555 /* SelectPlayerController.swift */,
 				A1E6544B2BC577C50089E555 /* QuizController.swift */,
 				A1726F592BBC3454003645FC /* Assets.xcassets */,
@@ -146,6 +149,7 @@
 			files = (
 				A1E6544A2BC56D4A0089E555 /* SelectPlayerController.swift in Sources */,
 				A1726F552BBC3453003645FC /* ViewController.swift in Sources */,
+				A1A9287F2BC7DE71007CE284 /* AttaquerController.swift in Sources */,
 				A1E6544C2BC577C50089E555 /* QuizController.swift in Sources */,
 				A1726F512BBC3453003645FC /* AppDelegate.swift in Sources */,
 				A1726F532BBC3453003645FC /* SceneDelegate.swift in Sources */,
