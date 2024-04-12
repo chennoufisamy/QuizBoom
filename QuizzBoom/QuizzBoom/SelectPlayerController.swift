@@ -20,11 +20,17 @@ class SelectPlayerController: UIViewController {
     
     @IBOutlet var objetsOutlet: [UIImageView]!
     
+    var positionGrillleJoueur1 = [[String]] ()
+    var grillleJoueur1 = [[String]] ()
     let tailleGrille: Int = 7
     let nbObjets: Int = 5
+    let grilleSize = CGSize(width: 350, height: 350) // Taille de la grille
+    let caseSize = CGSize(width: 50, height: 50) // Taille d'une case de la grille
     
     var nomJoueur1: String = ""
     var nomJoueur2: String = ""
+    
+    // pour quand on place 5 objets les autres deviennent hide
     var nbObjetsPlaces: Int = 0
     
     var objetTouche : Int = -1
@@ -116,13 +122,73 @@ class SelectPlayerController: UIViewController {
         //replacer l'objet à l'endroit d'origine
         objetsOutlet[objetTouche].center = pointDepart
     }
-    
+    /*func validerPlaceObjet(_: ligneDepart,_: ligneFin,_: colonneDepart,_: colonneFin) -> Bool{
+        let valide = true
+        for l in ligneDepart...ligneFin{
+            for c in colonneDepart...colonneFin{
+                if grillleJoueur1[l,c] != "."{
+                    valide = false
+                    return
+                }
+            }
+        }
+        if valide{
+            positionGrillleJoueur1.append([ligneDepart,ligneFin,colonneDepart,colonneFin])
+            for l in ligneDepart...ligneFin{
+                for c in colonneDepart...colonneFin{
+                    grillleJoueur1[l,c] = "O"
+                    
+                }
+        }
+    }
+        return valide
+    }*/
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 
         if objetTouche == -1 {
             return
         }
-        retourAuDepart ()
+        if objetTouche != -1 {
+            let touch = touches.randomElement()!
+            let touchLocation = touch.location(in: view)
+
+            // Déterminer la position de la case
+            let caseX = Int(floor(touchLocation.x / caseSize.width)) * Int(caseSize.width)
+            let caseY = Int(floor(touchLocation.y / caseSize.height)) * Int(caseSize.height)
+            print("caseX \(caseX)")
+            print("caseY \(caseY)")
+
+            //recuperer les dimensions de l objet
+            let objectWidth = objetsOutlet[objetTouche].frame.width
+            let objectHeight = objetsOutlet[objetTouche].frame.height
+            
+            var casePositionX = caseX
+            var casePositionY = caseY
+            //var casePositionY = caseY - Int(floor(objectHeight / 2))
+            
+            var ligneDebut = Int(caseX / Int(caseSize.width))
+            var ligneFin = Int(Int(objectHeight) / Int(caseSize.height))
+            
+            var colonneDebut = Int(casePositionX / Int(caseSize.width))
+            var colonneFin = Int(Int(objectWidth) / Int(caseSize.width)) 
+            
+            print("ligneDebut \(ligneDebut)")
+            print("ligneFin \(ligneFin)")
+            print("colonneDebut \(colonneDebut)")
+            print("colonneFin \(colonneFin)")
+            // Ensure object stays within grid boundaries
+            let maxX = grilleSize.width - objectWidth
+            //let maxY = grilleSize.height - objectHeight
+            
+            casePositionX = min(casePositionX, Int(maxX))  // Clamp to maximum X
+            //casePositionY = min(casePositionY, Int(maxY))  // Clamp to maximum Y
+            
+            print("casePositionX \(casePositionX)")
+            print("casePositionY \(casePositionY)")
+                    let casePosition = CGPoint(x: casePositionX, y: casePositionY)
+                    objetsOutlet[objetTouche].center = casePosition
+               
+        }else {retourAuDepart() }
     }
     
     override func viewDidLoad() {

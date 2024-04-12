@@ -9,6 +9,25 @@ import UIKit
 
 class AttaquerController: UIViewController {
 
+    var choixDifficulte : String = ""
+    @IBAction func choixDifficulte(_ sender: UIButton) {
+        if sender.tag == 0{
+            choixDifficulte = "facile"
+        }else if sender.tag == 1{
+            choixDifficulte = "moyenne"
+        }else{
+            choixDifficulte = "difficile"
+        }
+    }
+    //Evoi de la variable choixDifficulte à classe QuizController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "versQuiz" {
+            if let destinationVC = segue.destination as? QuizController {
+                destinationVC.difficulte = choixDifficulte
+                print("difficulte \(choixDifficulte)")
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

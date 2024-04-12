@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lyo-Vq-odQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lyo-Vq-odQ">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -146,7 +147,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="grille" translatesAutoresizingMaskIntoConstraints="NO" id="HXd-Px-f5h">
-                                <rect key="frame" x="322" y="205" width="50" height="50"/>
+                                <rect key="frame" x="323" y="205" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="grille" translatesAutoresizingMaskIntoConstraints="NO" id="zaM-2B-2If">
@@ -486,7 +487,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="grille" translatesAutoresizingMaskIntoConstraints="NO" id="w3X-0e-BGV">
-                                <rect key="frame" x="323" y="206" width="50" height="50"/>
+                                <rect key="frame" x="323" y="205" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="grille" translatesAutoresizingMaskIntoConstraints="NO" id="EuT-W9-yDi">
@@ -730,60 +731,65 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Qu'elle est la date de la fin de la deuxième guerre  mondiale?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRL-s4-Lsc">
-                                <rect key="frame" x="0.0" y="102" width="377" height="78"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNQ-9u-ool">
                                 <rect key="frame" x="36" y="462" width="40" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="A"/>
+                                <connections>
+                                    <action selector="reponse:" destination="6K0-1T-AE0" eventType="touchUpInside" id="nvd-ms-2fG"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1945" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5C7-62-94r">
-                                <rect key="frame" x="106" y="467" width="55" height="29"/>
+                                <rect key="frame" x="106" y="467" width="271" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FYe-YP-Z3N">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FYe-YP-Z3N">
                                 <rect key="frame" x="36" y="526" width="40" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="B"/>
+                                <connections>
+                                    <action selector="reponse:" destination="6K0-1T-AE0" eventType="touchUpInside" id="Rrb-NB-ihS"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1919" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqy-a7-Jw6">
-                                <rect key="frame" x="106" y="531" width="52" height="29"/>
+                                <rect key="frame" x="106" y="531" width="271" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7d-6R-wKL">
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7d-6R-wKL">
                                 <rect key="frame" x="36" y="589" width="40" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="C"/>
+                                <connections>
+                                    <action selector="reponse:" destination="6K0-1T-AE0" eventType="touchUpInside" id="2qM-Fd-3jk"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1944" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qju-1f-E2S">
-                                <rect key="frame" x="106" y="594" width="56" height="29"/>
+                                <rect key="frame" x="106" y="594" width="279" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uFS-Ul-Dch">
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uFS-Ul-Dch">
                                 <rect key="frame" x="36" y="653" width="40" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="D"/>
+                                <connections>
+                                    <action selector="reponse:" destination="6K0-1T-AE0" eventType="touchUpInside" id="wPh-6A-myQ"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1918" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EPW-jH-4pZ">
-                                <rect key="frame" x="106" y="658" width="52" height="29"/>
+                                <rect key="frame" x="106" y="658" width="271" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
@@ -794,27 +800,47 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Valider la réponse"/>
+                                <connections>
+                                    <action selector="validerReponseAction:" destination="6K0-1T-AE0" eventType="touchUpInside" id="0UQ-pf-el8"/>
+                                    <segue destination="il0-0j-hNH" kind="show" id="oeN-76-Aps"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lc0-wq-jVn">
                                 <rect key="frame" x="16" y="217" width="361" height="202"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Qu'elle est la date de la fin de la deuxième guerre  mondiale?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRL-s4-Lsc">
+                                <rect key="frame" x="8" y="115" width="377" height="78"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hVH-IO-hr7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="o6A-R7-TLs"/>
+                    <connections>
+                        <outlet property="image" destination="Lc0-wq-jVn" id="f15-6Y-E5Z"/>
+                        <outlet property="question" destination="qRL-s4-Lsc" id="Ih1-zz-IFx"/>
+                        <outlet property="validerReponseOutlet" destination="rnQ-Kn-Xzh" id="EvS-EQ-mPm"/>
+                        <outletCollection property="reponses" destination="5C7-62-94r" collectionClass="NSMutableArray" id="Q9G-bA-tKE"/>
+                        <outletCollection property="reponses" destination="sqy-a7-Jw6" collectionClass="NSMutableArray" id="TYu-fF-dQ6"/>
+                        <outletCollection property="reponses" destination="Qju-1f-E2S" collectionClass="NSMutableArray" id="hjV-T3-Ycc"/>
+                        <outletCollection property="reponses" destination="EPW-jH-4pZ" collectionClass="NSMutableArray" id="U9n-e1-yFG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KFN-c7-ks5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3802" y="-32"/>
+            <point key="canvasLocation" x="3902" y="-32"/>
         </scene>
         <!--Joueur 1 Attaque-->
         <scene sceneID="Z9O-iu-vyY">
             <objects>
                 <viewController id="il0-0j-hNH" customClass="AttaquerController" customModule="QuizzBoom" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nHD-J4-pag" customClass="Atta">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="grille" translatesAutoresizingMaskIntoConstraints="NO" id="qUZ-dQ-ySc">
@@ -890,7 +916,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="grille" translatesAutoresizingMaskIntoConstraints="NO" id="aiD-w3-ecC">
-                                <rect key="frame" x="321" y="252" width="50" height="50"/>
+                                <rect key="frame" x="321" y="251" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="grille" translatesAutoresizingMaskIntoConstraints="NO" id="AfD-Eg-AVC">
@@ -1013,22 +1039,24 @@
                                 <rect key="frame" x="321" y="551" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U33-r1-YkX">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U33-r1-YkX">
                                 <rect key="frame" x="140" y="703" width="94" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Moyenne"/>
                                 <connections>
-                                    <segue destination="6K0-1T-AE0" kind="show" id="FYi-el-IAv"/>
+                                    <action selector="choixDifficulte:" destination="il0-0j-hNH" eventType="touchUpInside" id="JuV-Rk-aV4"/>
+                                    <segue destination="6K0-1T-AE0" kind="show" identifier="versQuiz" id="QfY-Ml-Myb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZz-UC-Js2">
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="versQuiz" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZz-UC-Js2">
                                 <rect key="frame" x="263" y="703" width="85" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Difficiile"/>
                                 <connections>
-                                    <segue destination="6K0-1T-AE0" kind="show" id="xWH-eh-3qF"/>
+                                    <action selector="choixDifficulte:" destination="il0-0j-hNH" eventType="touchUpInside" id="wuw-48-Nin"/>
+                                    <segue destination="6K0-1T-AE0" kind="show" identifier="versQuiz" id="F5h-qK-5C3"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choisir le niveau de difficulté de la question." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8M-cF-6xn">
@@ -1041,10 +1069,12 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Wi-A1-KOY">
                                 <rect key="frame" x="41" y="703" width="68" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" identifier="versQuiz"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Facile"/>
                                 <connections>
-                                    <segue destination="6K0-1T-AE0" kind="show" id="k4J-5O-mez"/>
+                                    <action selector="choixDifficulte:" destination="il0-0j-hNH" eventType="touchUpInside" id="eLw-78-m2e"/>
+                                    <segue destination="6K0-1T-AE0" kind="show" identifier="versQuiz" id="cvr-M9-sUE"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1 Bombe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2U-do-fUS">
@@ -1083,7 +1113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nJm-SC-n6Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2802" y="-32"/>
+            <point key="canvasLocation" x="2955" y="-32"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VPF-f5-b78">
@@ -1103,10 +1133,10 @@
             </objects>
             <point key="canvasLocation" x="-509.16030534351142" y="-31.690140845070424"/>
         </scene>
-        <!--Joueur 1 Attaque-->
+        <!--Joueur2attaque-->
         <scene sceneID="XV0-gE-TKk">
             <objects>
-                <viewController id="7Oy-0U-w4X" customClass="AttaquerController" customModule="QuizzBoom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Joueur2attaque" title="Joueur2attaque" id="7Oy-0U-w4X" customClass="AttaquerController" customModule="QuizzBoom" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pml-Dw-sJc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1307,22 +1337,22 @@
                                 <rect key="frame" x="321" y="551" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sqT-ZD-XOs">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sqT-ZD-XOs">
                                 <rect key="frame" x="140" y="703" width="94" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Moyenne"/>
                                 <connections>
-                                    <segue destination="6K0-1T-AE0" kind="show" id="2Pt-Uu-oTd"/>
+                                    <segue destination="6K0-1T-AE0" kind="show" identifier="versQuiz" id="oHy-VC-DWG"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QkP-KL-n5V">
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QkP-KL-n5V">
                                 <rect key="frame" x="263" y="703" width="85" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Difficiile"/>
                                 <connections>
-                                    <segue destination="6K0-1T-AE0" kind="show" id="4zN-fz-Zjr"/>
+                                    <segue destination="6K0-1T-AE0" kind="show" identifier="versQuiz" id="joX-uS-d0K"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choisir le niveau de difficulté de la question." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ErV-MN-GeO">
@@ -1338,7 +1368,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Facile"/>
                                 <connections>
-                                    <segue destination="6K0-1T-AE0" kind="show" id="OFp-OR-6jJ"/>
+                                    <segue destination="6K0-1T-AE0" kind="show" identifier="versQuiz" id="80E-6C-2pT"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1 Bombe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgs-r4-oeT">
@@ -1377,12 +1407,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kzy-04-fnw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2801" y="636"/>
+            <point key="canvasLocation" x="2955" y="630"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Meq-JA-17K"/>
-        <segue reference="2Pt-Uu-oTd"/>
+        <segue reference="oeN-76-Aps"/>
+        <segue reference="80E-6C-2pT"/>
         <segue reference="7pq-RL-gSD"/>
         <segue reference="k4h-gV-oFg"/>
     </inferredMetricsTieBreakers>
