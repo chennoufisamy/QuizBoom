@@ -28,7 +28,7 @@ class SelectPlayerController: UIViewController {
     let nbObjets: Int = 5
     let grilleSize = CGSize(width: 350, height: 350) // Taille de la grille
     let caseSize = CGSize(width: 50, height: 50) // Taille d'une case de la grille
-    
+    //git est passé par là
     
     // pour quand on place 5 objets les autres deviennent hide
     var nbObjetsPlaces: Int = 0
