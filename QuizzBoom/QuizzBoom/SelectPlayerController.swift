@@ -46,6 +46,18 @@ class SelectPlayerController: UIViewController {
         print("joueur 2 : \(nomJoueur2)")
     }
     
+    //Evoi des variables nomJoueur1 et nomJoueur2 à classe AttaquerController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "versAttaquer" {
+            if let destinationVC1 = segue.destination as? AttaquerController {
+                destinationVC1.nomJoueur1a = nomJoueur1
+            }
+        }
+            if let destinationVC2 = segue.destination as? AttaquerController {
+                destinationVC2.nomJoueur2a = nomJoueur2
+            }
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let t = touches.randomElement()!
         let p = t.location(in: view)

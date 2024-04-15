@@ -24,30 +24,56 @@ class QuizController: UIViewController {
     
     var questionCourante : contenuQuiz!
     var bonneReponse : Int = 0
+    var compteur : Int = 0
     
     @IBOutlet weak var question: UILabel!
     @IBOutlet weak var image: UIImageView!
     
-    @IBOutlet weak var validerReponseOutlet: UIButton!
     
     @IBOutlet var reponses: [UILabel]!
     
     @IBAction func reponse(_ sender: UIButton) {
         print("Bouton \(sender.tag)")
-        if sender.tag == bonneReponse {
-            reponses[sender.tag].textColor = UIColor.green
-            validerReponseOutlet.isEnabled = true
-        }else{
-            // Au lieu de déclencher la transition vers le QuizController, on déclanche la transition vers la vue "joueur 2 attaque"
-                    if let joueur2AttaqueViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Joueur2attaque") as? AttaquerController {
-                        navigationController?.pushViewController(joueur2AttaqueViewController, animated: true)
-                    }
-        }
-    }
+                   if sender.tag == bonneReponse {
+                       reponses[sender.tag].textColor = UIColor.green
+                       let alert = UIAlertController(title: "Bravooo ", message: "C'est la bonne réponse !", preferredStyle: .alert)
+                       alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+                           NSLog("The \"OK\" alert occured.")
+                           // Augmenter le compteur en fonction de la difficulté de la question
+                           switch self.difficulte {
+                           case "facile":
+                               // Ajouter 1 au compteur
+                               // Supposons que "counter" est une variable de votre ViewController qui garde la trace du score
+                               self.compteur += 1
+                           case "moyenne":
+                               // Ajouter 2 au compteur
+                               self.compteur += 2
+                           case "difficile":
+                               // Ajouter 3 au compteur
+                               self.compteur += 3
+                               
+                           default:
+                               break
+                           }
+                           // Déclencher la transition vers la vue suivante
+                           if let joueur1AttaqueViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Joueur1attaque") as? AttaquerController {
+                               self.navigationController?.pushViewController(joueur1AttaqueViewController, animated: true)
+                           }
+                       }))
+                       self.present(alert, animated: true, completion: nil)
+                   } else {
+                       // Au lieu de déclencher la transition vers le QuizController, on déclenche la transition vers la vue "joueur 2 attaque"
+                       let alert = UIAlertController(title: "Dommage !", message: "Ce n'est pas la bonne réponse", preferredStyle: .alert)
+                       alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+                           NSLog("The \"OK\" alert occured.")
+                           if let joueur2AttaqueViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Joueur2attaque") as? AttaquerController {
+                               self.navigationController?.pushViewController(joueur2AttaqueViewController, animated: true)
+                           } 
+                       }))
+                       self.present(alert, animated: true, completion: nil)
+                   }
+               }
     
-    
-    @IBAction func validerReponseAction(_ sender: Any) {
-    }
     
     
     func affichageQuestion(difficulte : String){
