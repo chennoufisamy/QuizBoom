@@ -9,6 +9,8 @@ import UIKit
 
 class SelectPlayerController: UIViewController {
 
+    var nomJoueur1: String = ""
+    var nomJoueur2: String = ""
     @IBOutlet var grilleJoueur1: [UIImageView]!
     
 
@@ -27,8 +29,6 @@ class SelectPlayerController: UIViewController {
     let grilleSize = CGSize(width: 350, height: 350) // Taille de la grille
     let caseSize = CGSize(width: 50, height: 50) // Taille d'une case de la grille
     
-    var nomJoueur1: String = ""
-    var nomJoueur2: String = ""
     
     // pour quand on place 5 objets les autres deviennent hide
     var nbObjetsPlaces: Int = 0
@@ -36,27 +36,29 @@ class SelectPlayerController: UIViewController {
     var objetTouche : Int = -1
     var pointDepart : CGPoint = CGPoint(x:0,y:0)
     
-    @IBAction func validerGrilleJ1(_ sender: Any) {
+    @IBAction func validerGrilleJ1(_ sender: UIButton) {
         nomJoueur1 = nomJoueur1Outlet.text!
         print("joueur 1 : \(nomJoueur1)")
+        UserDefaults.standard.set(nomJoueur1, forKey: "nomJoueur1Value")
     }
     
-    @IBAction func validerGrilleJ2(_ sender: Any) {
+    @IBAction func validerGrilleJ2(_ sender: UIButton) {
         nomJoueur2 = nomJoueur2Outlet.text!
         print("joueur 2 : \(nomJoueur2)")
+        UserDefaults.standard.set(nomJoueur2, forKey: "nomJoueur2Value")
     }
+    
     
     //Evoi des variables nomJoueur1 et nomJoueur2 à classe AttaquerController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "versAttaquer" {
-            if let destinationVC1 = segue.destination as? AttaquerController {
-                destinationVC1.nomJoueur1a = nomJoueur1
+            if segue.identifier == "versAttaquer" {
+                if let destinationVC = segue.destination as? AttaquerController {
+                    destinationVC.nomJoueur1 = nomJoueur1
+                    destinationVC.nomJoueur2 = nomJoueur2
+                }
             }
         }
-            if let destinationVC2 = segue.destination as? AttaquerController {
-                destinationVC2.nomJoueur2a = nomJoueur2
-            }
-    }
+
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let t = touches.randomElement()!
@@ -156,56 +158,37 @@ class SelectPlayerController: UIViewController {
         return valide
     }*/
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-
+        
+        let touch = touches.randomElement()!
+        let touchLocation = touch.location(in: view)
         if objetTouche == -1 {
             return
         }
-        if objetTouche != -1 {
-            let touch = touches.randomElement()!
-            let touchLocation = touch.location(in: view)
-
-            // Déterminer la position de la case
-            let caseX = Int(floor(touchLocation.x / caseSize.width)) * Int(caseSize.width)
-            let caseY = Int(floor(touchLocation.y / caseSize.height)) * Int(caseSize.height)
-            print("caseX \(caseX)")
-            print("caseY \(caseY)")
-
-            //recuperer les dimensions de l objet
-            let objectWidth = objetsOutlet[objetTouche].frame.width
-            let objectHeight = objetsOutlet[objetTouche].frame.height
+        if (objetTouche != -1) && (touchLocation.x < 300) && (touchLocation.y < 500 && touchLocation.y > 200 ) && (objetsOutlet[objetTouche].tag >= 0 && objetsOutlet[objetTouche].tag <= 4){
             
-            var casePositionX = caseX
-            var casePositionY = caseY
-            //var casePositionY = caseY - Int(floor(objectHeight / 2))
+            //recuperer largeur objet et le diviser par 2
+            let largeurObjet = objetsOutlet[objetTouche].frame.width / 2
             
-            var ligneDebut = Int(caseX / Int(caseSize.width))
-            var ligneFin = Int(Int(objectHeight) / Int(caseSize.height))
+            // rendre coordonée X un multiple de 50
+            var xCorrigee = (Int(touchLocation.x) / 50) * 50
             
-            var colonneDebut = Int(casePositionX / Int(caseSize.width))
-            var colonneFin = Int(Int(objectWidth) / Int(caseSize.width)) 
+            let yCorrigee = Int(touchLocation.y)
             
-            print("ligneDebut \(ligneDebut)")
-            print("ligneFin \(ligneFin)")
-            print("colonneDebut \(colonneDebut)")
-            print("colonneFin \(colonneFin)")
-            // Ensure object stays within grid boundaries
-            let maxX = grilleSize.width - objectWidth
-            //let maxY = grilleSize.height - objectHeight
+            //Ajouter la moitié de la largeur de l'objet à la coordonnée X
+            xCorrigee = xCorrigee + Int(largeurObjet)
             
-            casePositionX = min(casePositionX, Int(maxX))  // Clamp to maximum X
-            //casePositionY = min(casePositionY, Int(maxY))  // Clamp to maximum Y
+            //Placer l'objet
+            let casePosition = CGPoint(x: xCorrigee, y: yCorrigee)
+            objetsOutlet[objetTouche].center = casePosition
             
-            print("casePositionX \(casePositionX)")
-            print("casePositionY \(casePositionY)")
-                    let casePosition = CGPoint(x: casePositionX, y: casePositionY)
-                    objetsOutlet[objetTouche].center = casePosition
-               
         }else {retourAuDepart() }
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        nomJoueur1 = UserDefaults.standard.string(forKey: "nomJoueur1Value") ?? ""
+        nomJoueur2 = UserDefaults.standard.string(forKey: "nomJoueur2Value") ?? ""
         // Do any additional setup after loading the view.
     }
     

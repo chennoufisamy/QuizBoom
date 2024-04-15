@@ -75,7 +75,6 @@ class QuizController: UIViewController {
                }
     
     
-    
     func affichageQuestion(difficulte : String){
         
         // choix question de manniere random
@@ -113,7 +112,6 @@ class QuizController: UIViewController {
         questionsFaciles.append(contentsOf: [question1, question2, question3])
         questionsMoyennes.append(contentsOf: [question4, question5, question6])
         questionsDifficiles.append(contentsOf: [question7, question8, question9])
-        
         affichageQuestion(difficulte: difficulte)
         
     }

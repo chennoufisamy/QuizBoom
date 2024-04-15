@@ -8,10 +8,9 @@
 import UIKit
 
 class AttaquerController: UIViewController {
-
-    var nomJoueur1a : String = ""
-    var nomJoueur2a : String = ""
-
+    var nomJoueur1 : String = ""
+    var nomJoueur2 : String = ""
+    var compteur : Int = 0
     
     @IBOutlet weak var joueur1MessageLabel: UILabel!
     
@@ -22,41 +21,48 @@ class AttaquerController: UIViewController {
     @IBOutlet weak var compteurLabelJoueur2: UILabel!
     var choixDifficulte : String = ""
     @IBAction func choixDifficulte(_ sender: UIButton) {
+        
         if sender.tag == 0{
             choixDifficulte = "facile"
+            compteur += 1
         }else if sender.tag == 1{
             choixDifficulte = "moyenne"
+            compteur = 2
         }else{
             choixDifficulte = "difficile"
+            compteur = 3
         }
+        print("compteur \(compteur)")
+        UserDefaults.standard.set(compteur, forKey: "compteurValue")
+
     }
     //Evoi de la variable choixDifficulte à classe QuizController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "versQuiz" {
             if let destinationVC = segue.destination as? QuizController {
                 destinationVC.difficulte = choixDifficulte
-                print("difficulte \(choixDifficulte)")
             }
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("\(nomJoueur1a)")
-        if nomJoueur1a == ""{
-            joueur1MessageLabel.text = "Joueur1, c'est ton tour!"
+        compteur = UserDefaults.standard.integer(forKey: "compteurValue")
+        print("ciao \(nomJoueur1)")
+        print("ciao \(nomJoueur2)")
+        if nomJoueur1 == ""{
+            joueur1MessageLabel?.text = "Joueur1, c'est ton tour!"
         } else{
-            joueur1MessageLabel.text = "\(nomJoueur1a), c'est ton tour!"
+            joueur1MessageLabel?.text = "\(nomJoueur1), c'est ton tour!"
         }
-        /*if nomJoueur2a == ""{
-            joueur2messageLabel.text = "Joueur2, c'est ton tour!"
+        if nomJoueur2 == ""{
+            joueur2messageLabel?.text = "Joueur2, c'est ton tour!"
         }else{
-            joueur2messageLabel.text = "\(nomJoueur2a), c'est ton tour!"
-        }*/
-        
-        
-        // Do any additional setup after loading the view.
+            joueur2messageLabel?.text = "\(nomJoueur2), c'est ton tour!"
+        }
+        compteurLabelJoueur1?.text = "Nombre de bombes : \(compteur)"
+        print("compteur 2 \(compteur)")
     }
-    
+     
 
     /*
     // MARK: - Navigation
