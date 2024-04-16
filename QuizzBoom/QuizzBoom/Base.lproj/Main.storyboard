@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lyo-Vq-odQ">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -30,7 +30,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Commencer à Jouer"/>
                                 <connections>
-                                    <segue destination="oV4-9I-xtI" kind="presentation" modalPresentationStyle="fullScreen" id="bvb-IM-9sa"/>
+                                    <segue destination="oV4-9I-xtI" kind="show" id="bvb-IM-9sa"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Développé par Samy Chennoufi et Mamadou Diallo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RdU-ZC-Aly">
@@ -54,6 +54,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Accueil" id="Ynk-gO-0eR"/>
+                    <connections>
+                        <segue destination="oV4-9I-xtI" kind="show" id="k4h-gV-oFg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -64,7 +67,7 @@
             <objects>
                 <viewController id="kEp-Id-hnr" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V4h-3i-BKt">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="15" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sH-ag-qSo">
@@ -340,7 +343,7 @@ Le premier joueur à épuiser tous les points de vie de son adversaire remporte 
                                 <buttonConfiguration key="configuration" style="filled" title="Valider la grille"/>
                                 <connections>
                                     <action selector="validerGrilleJ1:" destination="oV4-9I-xtI" eventType="touchUpInside" id="gK6-51-kzF"/>
-                                    <segue destination="cAr-LA-wrg" kind="presentation" identifier="versInfoJ2" modalPresentationStyle="fullScreen" id="dib-ra-AoF"/>
+                                    <segue destination="cAr-LA-wrg" kind="show" identifier="versInfoJ2" id="dib-ra-AoF"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="moto" translatesAutoresizingMaskIntoConstraints="NO" id="yYZ-ZC-jXF">
@@ -679,7 +682,7 @@ Le premier joueur à épuiser tous les points de vie de son adversaire remporte 
                                 <buttonConfiguration key="configuration" style="filled" title="Valider la grille"/>
                                 <connections>
                                     <action selector="validerGrilleJ2:" destination="cAr-LA-wrg" eventType="touchUpInside" id="4Ff-kF-hFf"/>
-                                    <segue destination="il0-0j-hNH" kind="presentation" identifier="versAttaquer" modalPresentationStyle="fullScreen" id="D8t-sy-sem"/>
+                                    <segue destination="il0-0j-hNH" kind="show" identifier="versAttaquer" id="D8t-sy-sem"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="moto" translatesAutoresizingMaskIntoConstraints="NO" id="p6m-HM-Wdz">
@@ -789,7 +792,7 @@ Le premier joueur à épuiser tous les points de vie de son adversaire remporte 
             <objects>
                 <viewController id="6K0-1T-AE0" customClass="QuizController" customModule="QuizzBoom" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nih-cF-o4i">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNQ-9u-ool">
@@ -1176,6 +1179,24 @@ Le premier joueur à épuiser tous les points de vie de son adversaire remporte 
             </objects>
             <point key="canvasLocation" x="2955" y="-32"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VPF-f5-b78">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Lyo-Vq-odQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Os-l8-5fy">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ekZ-ix-cWp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tMm-Wj-wdg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-509.16030534351142" y="-31.690140845070424"/>
+        </scene>
         <!--Joueur2attaque-->
         <scene sceneID="XV0-gE-TKk">
             <objects>
@@ -1465,7 +1486,8 @@ Le premier joueur à épuiser tous les points de vie de son adversaire remporte 
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="cvr-M9-sUE"/>
+        <segue reference="F5h-qK-5C3"/>
+        <segue reference="k4h-gV-oFg"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="avoin" width="417" height="834"/>
