@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lyo-Vq-odQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lyo-Vq-odQ">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -89,13 +90,13 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="18" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3g-pZ-tkX">
                                 <rect key="frame" x="16" y="424" width="361" height="394"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <mutableString key="text">Chaque joueur commence avec une armada, représentant la santé de leurs défenses.
+                                <string key="text">Chaque joueur commence avec une armada, représentant la santé de leurs défenses.
 Les joueurs s'affrontent tour à tour. Pendant votre tour, vous devez répondre à une question de quiz pour obtenir une ou des bombe(s).
 Si vous répondez correctement à la question, vous obtenez le nombre de bombes souscrits que vous pouvez utiliser pour attaquer votre adversaire.
 Vous pouvez choisir où lancer votre bombe pour attaquer les défenses de votre adversaire.
 Lorsqu'une bombe atteint les défenses de votre adversaire, elle inflige des dégâts et réduit ses points de vie.
 Le premier joueur à épuiser tous les points de vie de son adversaire remporte la partie.
-</mutableString>
+</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -116,7 +117,7 @@ Le premier joueur à épuiser tous les points de vie de son adversaire remporte 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XbR-au-MvZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="474" y="732"/>
+            <point key="canvasLocation" x="472.51908396946561" y="731.69014084507046"/>
         </scene>
         <!--Informations Joueur 1-->
         <scene sceneID="k5L-go-hDi">

@@ -22,8 +22,12 @@ class SelectPlayerController: UIViewController {
     
     @IBOutlet var objetsOutlet: [UIImageView]!
     
-    var positionGrillleJoueur1 = [[String]] ()
-    var grillleJoueur1 = [[String]] ()
+    var positionGrilleJoueur1 = [[String]]()
+    var positionGrilleJoueur2 = [[String]]()
+    var grilleJoueur1tab = [[String]]()
+    var grilleJoueur2tab = [[String]]()
+    var objetsPlacesJ1 : Int = 0
+    var objetsPlacesJ2 : Int = 0
     let tailleGrille: Int = 7
     let nbObjets: Int = 5
     let grilleSize = CGSize(width: 350, height: 350) // Taille de la grille
@@ -121,27 +125,43 @@ class SelectPlayerController: UIViewController {
         //replacer l'objet à l'endroit d'origine
         objetsOutlet[objetTouche].center = pointDepart
     }
-    /*func validerPlaceObjet(_: ligneDepart,_: ligneFin,_: colonneDepart,_: colonneFin) -> Bool{
+    
+    func creerGrilleJ1(_ : grilleJoueur, _: objetsPlaces){
+        
+        for _ in 1...tailleGrille{
+            var ligne = [String]()
+                for _ in 1...tailleGrille{
+                    ligne.append(".")
+                }
+        grilleJoueur.append(ligne)
+        }
+        while objetsPlaces != nbObjets{
+            
+        }
+    
+    
+    func validerPlaceObjet(_: ligneDepart,_: ligneFin,_: colonneDepart,_: colonneFin) -> Bool{
         let valide = true
         for l in ligneDepart...ligneFin{
             for c in colonneDepart...colonneFin{
-                if grillleJoueur1[l,c] != "."{
+                if grilleJoueur1tab[l,c] != "."{
                     valide = false
                     return
                 }
             }
         }
         if valide{
-            positionGrillleJoueur1.append([ligneDepart,ligneFin,colonneDepart,colonneFin])
+            positionGrilleJoueur1.append([ligneDepart,ligneFin,colonneDepart,colonneFin])
             for l in ligneDepart...ligneFin{
                 for c in colonneDepart...colonneFin{
-                    grillleJoueur1[l,c] = "O"
+                    grilleJoueur1tab[l,c] = "O"
                     
                 }
         }
     }
         return valide
-    }*/
+    }
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         let touch = touches.randomElement()!
@@ -149,7 +169,7 @@ class SelectPlayerController: UIViewController {
         if objetTouche == -1 {
             return
         }
-        if (objetTouche != -1) && (touchLocation.x < 300) && (touchLocation.y < 500 && touchLocation.y > 200 ) && (objetsOutlet[objetTouche].tag >= 0 && objetsOutlet[objetTouche].tag <= 4){
+        if (objetTouche != -1) && (touchLocation.x < 350) && (touchLocation.y < 500 && touchLocation.y > 200 ) && (objetsOutlet[objetTouche].tag >= 0 && objetsOutlet[objetTouche].tag <= 4){
             
             //recuperer largeur objet et le diviser par 2
             let largeurObjet = objetsOutlet[objetTouche].frame.width / 2
