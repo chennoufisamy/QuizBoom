@@ -48,18 +48,6 @@ class SelectPlayerController: UIViewController {
         UserDefaults.standard.set(nomJoueur2, forKey: "nomJoueur2Value")
     }
     
-    
-    //Evoi des variables nomJoueur1 et nomJoueur2 à classe AttaquerController
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "versAttaquer" {
-                if let destinationVC = segue.destination as? AttaquerController {
-                    destinationVC.nomJoueur1 = nomJoueur1
-                    destinationVC.nomJoueur2 = nomJoueur2
-                }
-            }
-        }
-
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let t = touches.randomElement()!
         let p = t.location(in: view)
@@ -125,14 +113,11 @@ class SelectPlayerController: UIViewController {
     
     func retourAuDepart () {
         // Quand on lache un objet, on le rend petit
-        for objet in objetsOutlet {
-                if objet.tag>=0 && objet.tag<=4 {
-                    objet.frame.size = CGSize(width: 50, height:100)
+                if objetsOutlet[objetTouche].tag>=0 && objetsOutlet[objetTouche].tag<=4 {
+                    objetsOutlet[objetTouche].frame.size = CGSize(width: 50, height:100)
                 } else {
-                    objet.frame.size = CGSize(width: 100, height:50)
+                    objetsOutlet[objetTouche].frame.size = CGSize(width: 100, height:50)
                 }
-            }
-        
         //replacer l'objet à l'endroit d'origine
         objetsOutlet[objetTouche].center = pointDepart
     }
