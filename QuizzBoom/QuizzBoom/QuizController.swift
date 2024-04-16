@@ -39,6 +39,7 @@ class QuizController: UIViewController {
                        let alert = UIAlertController(title: "Bravooo ", message: "C'est la bonne réponse !", preferredStyle: .alert)
                        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
                            NSLog("The \"OK\" alert occured.")
+                           
                            // Augmenter le compteur en fonction de la difficulté de la question
                            switch self.difficulte {
                            case "facile":

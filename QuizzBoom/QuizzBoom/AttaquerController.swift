@@ -27,10 +27,10 @@ class AttaquerController: UIViewController {
             compteur += 1
         }else if sender.tag == 1{
             choixDifficulte = "moyenne"
-            compteur = 2
+            compteur += 2
         }else{
             choixDifficulte = "difficile"
-            compteur = 3
+            compteur += 3
         }
         print("compteur \(compteur)")
         UserDefaults.standard.set(compteur, forKey: "compteurValue")
