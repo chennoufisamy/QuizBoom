@@ -126,7 +126,7 @@ class SelectPlayerController: UIViewController {
         objetsOutlet[objetTouche].center = pointDepart
     }
     
-    func creerGrilleJ1(_ : grilleJoueur, _: objetsPlaces){
+   /* func creerGrilleJ1(_ : grilleJoueur, _: objetsPlaces){
         
         for _ in 1...tailleGrille{
             var ligne = [String]()
@@ -160,7 +160,7 @@ class SelectPlayerController: UIViewController {
         }
     }
         return valide
-    }
+    }*/
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
@@ -175,7 +175,7 @@ class SelectPlayerController: UIViewController {
             let largeurObjet = objetsOutlet[objetTouche].frame.width / 2
             
             // rendre coordonée X un multiple de 50
-            var xCorrigee = (Int(touchLocation.x) / 50) * 50
+            var xCorrigee = (Int(touchLocation.x) / 50) * 50 // loation - difference / 50 * 50 + diiference
             
             let yCorrigee = Int(touchLocation.y)
             
