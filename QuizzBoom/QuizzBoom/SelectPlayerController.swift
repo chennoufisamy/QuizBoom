@@ -22,8 +22,8 @@ class SelectPlayerController: UIViewController {
     
     @IBOutlet var objetsOutlet: [UIImageView]!
     
-    var positionGrilleJoueur1 = [[String]]()
-    var positionGrilleJoueur2 = [[String]]()
+    var positionGrilleJoueur1 = [[Int]]()
+    var positionGrilleJoueur2 = [[Int]]()
     var grilleJoueur1tab = [[String]]()
     var grilleJoueur2tab = [[String]]()
     var objetsPlacesJ1 : Int = 0
@@ -65,36 +65,36 @@ class SelectPlayerController: UIViewController {
                 
                 
                 //Augmenter la taille des objets afin de pouvoir les mettre correctement sur la grille
-                if objet.tag == 1{
+                if (objet.tag == 1) || (objet.tag == 11){
                     print("Je suis une voiture")
                     objet.frame.size = CGSize(width: 50, height:150)
                 }
-                if objet.tag == 2{
+                if (objet.tag == 2) || (objet.tag == 12){
                     print("Je suis un avion")
                     objet.frame.size = CGSize(width: 100, height:200)
                 }
-                if objet.tag == 3{
+                if (objet.tag == 3) || (objet.tag == 13){
                     print("Je suis un tank")
                     objet.frame.size = CGSize(width: 100, height:250)
                 }
-                if objet.tag == 4{
+                if (objet.tag == 4) || (objet.tag == 14){
                     print("Je suis un bateau")
                     objet.frame.size = CGSize(width: 50, height:300)
                 }
                 
-                if objet.tag == 6{
+                if (objet.tag == 6) || (objet.tag == 16){
                     print("Je suis une voiture")
                     objet.frame.size = CGSize(width: 150, height:50)
                 }
-                if objet.tag == 7{
+                if (objet.tag == 7) || (objet.tag == 17){
                     print("Je suis un avion")
                     objet.frame.size = CGSize(width: 200, height:100)
                 }
-                if objet.tag == 8{
+                if (objet.tag == 8) || (objet.tag == 18){
                     print("Je suis un tank")
                     objet.frame.size = CGSize(width: 250, height:100)
                 }
-                if objet.tag == 9{
+                if (objet.tag == 9) || (objet.tag == 19){
                     print("Je suis un bateau")
                     objet.frame.size = CGSize(width: 300, height:50)
                 }
@@ -117,7 +117,8 @@ class SelectPlayerController: UIViewController {
     
     func retourAuDepart () {
         // Quand on lache un objet, on le rend petit
-                if objetsOutlet[objetTouche].tag>=0 && objetsOutlet[objetTouche].tag<=4 {
+                if (objetsOutlet[objetTouche].tag>=0 && objetsOutlet[objetTouche].tag<=4) || (objetsOutlet[objetTouche].tag>=10 && objetsOutlet[objetTouche].tag<=14) {
+                    
                     objetsOutlet[objetTouche].frame.size = CGSize(width: 50, height:100)
                 } else {
                     objetsOutlet[objetTouche].frame.size = CGSize(width: 100, height:50)
@@ -128,9 +129,9 @@ class SelectPlayerController: UIViewController {
     
     func creerGrille(grilleJoueur : inout[[String]]){
         
-        for _ in 1...tailleGrille{
+        for _ in 0...tailleGrille - 1{
             var ligne = [String]()
-            for _ in 1...tailleGrille{
+            for _ in 0...tailleGrille - 1{
                 ligne.append(".")
             }
             grilleJoueur.append(ligne)
@@ -138,22 +139,27 @@ class SelectPlayerController: UIViewController {
     }
     
     
-    func validerPlaceObjet(_: ligneDepart,_: ligneFin,_: colonneDepart,_: colonneFin) -> Bool{
-        let valide = true
+    func validerPlaceObjet(ligneDepart : Int,ligneFin : Int, colonneDepart : Int,colonneFin : Int, grilleJoueur : inout [[String]], positionGrilleJoueur : inout [[Int]]) -> Bool{
+        
+        var valide = true
+        var sortieDuFor = false
         for l in ligneDepart...ligneFin{
             for c in colonneDepart...colonneFin{
-                if grilleJoueur1tab[l,c] != "."{
+                if grilleJoueur[l][c] != "." {
                     valide = false
-                    return
+                    sortieDuFor = true
+                    break
                 }
             }
+            if sortieDuFor == true{
+                break
+            }
         }
-        if valide{
-            positionGrilleJoueur1.append([ligneDepart,ligneFin,colonneDepart,colonneFin])
+        if valide == true{
+            positionGrilleJoueur.append([ligneDepart,ligneFin,colonneDepart,colonneFin])
             for l in ligneDepart...ligneFin{
                 for c in colonneDepart...colonneFin{
-                    grilleJoueur1tab[l,c] = "O"
-                    
+                    grilleJoueur[l][c] = "O"
                 }
         }
     }
@@ -161,31 +167,67 @@ class SelectPlayerController: UIViewController {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        var ligneDepart = -1
+        var ligneFin = -1
+        var colonneDepart = -1
+        var colonneFin = -1
         let touch = touches.randomElement()!
         let touchLocation = touch.location(in: view)
         if objetTouche == -1 {
             return
         }
-        if (objetTouche != -1) && (touchLocation.x < 350) && (touchLocation.y < 500 && touchLocation.y > 200 ) && (objetsOutlet[objetTouche].tag >= 0 && objetsOutlet[objetTouche].tag <= 4){
+        if (objetTouche != -1) && (touchLocation.x < 350) && (touchLocation.y < 500 && touchLocation.y > 200 ) && ((objetsOutlet[objetTouche].tag >= 0 && objetsOutlet[objetTouche].tag <= 4) || (objetsOutlet[objetTouche].tag>=10 && objetsOutlet[objetTouche].tag<=14)){
             
+            print("calculs objet")
             //recuperer largeur objet et le diviser par 2
             let largeurObjet = objetsOutlet[objetTouche].frame.width / 2
             
-            // rendre coordonée X un multiple de 50
-            var xCorrigee = (Int(touchLocation.x) / 50) * 50 // loation - difference / 50 * 50 + diiference
+            //recuperer hauteur objet et le diviser par 2
+            let hauteurObjet = objetsOutlet[objetTouche].frame.height / 2
             
-            let yCorrigee = Int(touchLocation.y)
+            // rendre coordonée X un multiple de 50
+            var xCorrigee = (((Int(touchLocation.x) - 25) / 50) * 50) + 25 // loation - difference / 50 * 50 + diiference
+            
+            var yCorrigee = (((Int(touchLocation.y) - 200) / 50) * 50) + 200
             
             //Ajouter la moitié de la largeur de l'objet à la coordonnée X
             xCorrigee = xCorrigee + Int(largeurObjet)
             
-            //Placer l'objet
-            let casePosition = CGPoint(x: xCorrigee, y: yCorrigee)
-            objetsOutlet[objetTouche].center = casePosition
+            //Ajouter la moitié de l'hauteur de l'objet à la coordonnée Y
+            yCorrigee = yCorrigee + Int(hauteurObjet)
             
-        }else {retourAuDepart() }
-        
+            ligneDepart = ((yCorrigee - 200) / 50) - 1
+            ligneFin = (((yCorrigee - 200) + Int(hauteurObjet)) / 50) - 1
+            colonneDepart = (xCorrigee / 50) - 1
+            colonneFin = (((xCorrigee - 50) + Int(largeurObjet) * 2) / 50) - 1
+            
+            print("x : \(xCorrigee), y : \(yCorrigee)")
+            print("ligneDepart : \(ligneDepart), ligneFin : \(ligneFin)")
+            print("colonneDepart : \(colonneDepart), colonneFin : \(colonneFin)")
+            
+            //Si on est sur la view du Joueur 1 et validerPlaceObjet == true
+            if (self.restorationIdentifier == "1"){
+                if (validerPlaceObjet(ligneDepart: ligneDepart, ligneFin: ligneFin, colonneDepart: colonneDepart, colonneFin: colonneFin, grilleJoueur: &grilleJoueur1tab, positionGrilleJoueur: &positionGrilleJoueur1) == true) {
+                    //Placer l'objet
+                    let casePosition = CGPoint(x: xCorrigee, y: yCorrigee)
+                    objetsOutlet[objetTouche].center = casePosition
+                }else { print("ne pas placer")
+                    retourAuDepart() }
+            }
+            //Si on est sur la view du Joueur 2 et validerPlaceObjet == true
+            else if (self.restorationIdentifier == "2"){
+                
+                if (validerPlaceObjet(ligneDepart: ligneDepart, ligneFin: ligneFin, colonneDepart: colonneDepart, colonneFin: colonneFin, grilleJoueur: &grilleJoueur2tab, positionGrilleJoueur: &positionGrilleJoueur2) == true) {
+                    
+                    //Placer l'objet
+                    let casePosition = CGPoint(x: xCorrigee, y: yCorrigee)
+                    objetsOutlet[objetTouche].center = casePosition
+                }else {retourAuDepart() }
+                
+            }else {
+                print("ne pas calculer")
+                retourAuDepart() }
+        }
     }
     
     override func viewDidLoad() {
@@ -193,8 +235,8 @@ class SelectPlayerController: UIViewController {
         nomJoueur1 = UserDefaults.standard.string(forKey: "nomJoueur1Value") ?? ""
         nomJoueur2 = UserDefaults.standard.string(forKey: "nomJoueur2Value") ?? ""
         
-        creerGrille(grilleJoueur : grilleJoueur1tab)
-        creerGrille(grilleJoueur : grilleJoueur2tab)
+        creerGrille(grilleJoueur : &grilleJoueur1tab)
+        creerGrille(grilleJoueur : &grilleJoueur2tab)
     }
     
 

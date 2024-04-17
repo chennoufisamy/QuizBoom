@@ -58,7 +58,7 @@ class AttaquerController: UIViewController {
             if debut_ligne <= ligne <= fin_ligne && debut_colonne <= colonne <= fin_colonne{
                 for l in debut_ligne...fin_ligne{
                     for c in debut_colonne...fin_colonne{
-                        if grilleJoueur[l,c] != "X"{
+                        if grilleJoueur[l][c] != "X"{
                             return false
                         }
                     }
@@ -78,12 +78,12 @@ class AttaquerController: UIViewController {
             (ligne, colonne) = attaquerCase()
             
             /// Si aucun objet placé sur cette case
-            if grilleJoueur[ligne, colonne] == "."{
-                grilleJoueur[ligne, colonne] = "#"
+            if grilleJoueur[ligne][colonne] == "."{
+                grilleJoueur[ligne][colonne] = "#"
                 let alert = UIAlertController(title: "Attaque échoué", message: "Case vide, aucun objet n'a été touché", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in }))
-            }else if grilleJoueur[ligne, colonne] == "O"{ // Si objet placé
-                grilleJoueur[ligne, colonne] = "X"
+            }else if grilleJoueur[ligne][colonne] == "O"{ // Si objet placé
+                grilleJoueur[ligne][colonne] = "X"
                 let alert = UIAlertController(title: "Attaque réussi!", message: "Bingo, tu as touché un objet!", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in
                     if verifObjetAbbatu(ligne,colonne,positionGrilleJoueur,grilleJoueur){ //Si objet abbatu
