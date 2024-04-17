@@ -126,18 +126,16 @@ class SelectPlayerController: UIViewController {
         objetsOutlet[objetTouche].center = pointDepart
     }
     
-   /* func creerGrilleJ1(_ : grilleJoueur, _: objetsPlaces){
+    func creerGrille(grilleJoueur : inout[[String]]){
         
         for _ in 1...tailleGrille{
             var ligne = [String]()
-                for _ in 1...tailleGrille{
-                    ligne.append(".")
-                }
-        grilleJoueur.append(ligne)
+            for _ in 1...tailleGrille{
+                ligne.append(".")
+            }
+            grilleJoueur.append(ligne)
         }
-        while objetsPlaces != nbObjets{
-            
-        }
+    }
     
     
     func validerPlaceObjet(_: ligneDepart,_: ligneFin,_: colonneDepart,_: colonneFin) -> Bool{
@@ -160,7 +158,7 @@ class SelectPlayerController: UIViewController {
         }
     }
         return valide
-    }*/
+    }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
@@ -194,7 +192,9 @@ class SelectPlayerController: UIViewController {
         super.viewDidLoad()
         nomJoueur1 = UserDefaults.standard.string(forKey: "nomJoueur1Value") ?? ""
         nomJoueur2 = UserDefaults.standard.string(forKey: "nomJoueur2Value") ?? ""
-        // Do any additional setup after loading the view.
+        
+        creerGrille(grilleJoueur : grilleJoueur1tab)
+        creerGrille(grilleJoueur : grilleJoueur2tab)
     }
     
 
