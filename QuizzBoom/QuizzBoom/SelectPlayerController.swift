@@ -114,6 +114,21 @@ class SelectPlayerController: UIViewController {
             }
         
         }
+    func resetEmplacementsGrille(grilleJoueur: inout [[String]], positionGrilleJoueur: [[Int]]) {
+        for position in positionGrilleJoueur {
+            let ligneDepart = position[0]
+            let ligneFin = position[1]
+            let colonneDepart = position[2]
+            let colonneFin = position[3]
+            
+            for l in ligneDepart...ligneFin {
+                for c in colonneDepart...colonneFin {
+                    grilleJoueur[l][c] = "."
+                }
+            }
+        }
+    }
+
     
     func retourAuDepart () {
         // Quand on lache un objet, on le rend petit
@@ -135,7 +150,9 @@ class SelectPlayerController: UIViewController {
                 ligne.append(".")
             }
             grilleJoueur.append(ligne)
+            
         }
+        print ("ok la first step done")
     }
     
     
@@ -145,22 +162,27 @@ class SelectPlayerController: UIViewController {
         var sortieDuFor = false
         for l in ligneDepart...ligneFin{
             for c in colonneDepart...colonneFin{
+                /* probleme d'index qui arrive souvent ici
+                l'erreur se déclenche lorsqu'on place des objets trop grand car les coordonées à ce moment là sont faussées
+                si la lignefin ou col fin est sup = 6, ça donne des soucis  */
+                
                 if grilleJoueur[l][c] != "." {
                     valide = false
                     sortieDuFor = true
                     break
                 }
             }
-            if sortieDuFor == true{
+            if sortieDuFor { //}== true{
                 break
             }
         }
-        if valide == true{
+        if valide { //}== true{
             positionGrilleJoueur.append([ligneDepart,ligneFin,colonneDepart,colonneFin])
             for l in ligneDepart...ligneFin{
                 for c in colonneDepart...colonneFin{
                     grilleJoueur[l][c] = "O"
                 }
+                print ("jusque ici on suit")
         }
     }
         return valide
@@ -211,7 +233,12 @@ class SelectPlayerController: UIViewController {
                     //Placer l'objet
                     let casePosition = CGPoint(x: xCorrigee, y: yCorrigee)
                     objetsOutlet[objetTouche].center = casePosition
+                    
+                    //fonction pour restart la position de l'objet précédent afin de pouvoir exploiter la grille
+                    
+                            
                 }else { print("ne pas placer")
+                    resetEmplacementsGrille(grilleJoueur: &grilleJoueur1tab, positionGrilleJoueur: positionGrilleJoueur1)
                     retourAuDepart() }
             }
             //Si on est sur la view du Joueur 2 et validerPlaceObjet == true
@@ -222,6 +249,9 @@ class SelectPlayerController: UIViewController {
                     //Placer l'objet
                     let casePosition = CGPoint(x: xCorrigee, y: yCorrigee)
                     objetsOutlet[objetTouche].center = casePosition
+                    // Réinitialiser les emplacements de la grille pour permettre de placer d'autres objets à nouveau
+                resetEmplacementsGrille(grilleJoueur: &grilleJoueur2tab, positionGrilleJoueur: positionGrilleJoueur2)
+                        
                 }else {retourAuDepart() }
                 
             }else {

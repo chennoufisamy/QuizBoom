@@ -49,7 +49,7 @@ class AttaquerController: UIViewController {
         }
     }
     
-   /* func verifObjetAbbatu(_ : ligne, _ : colonne, _ : positionGrilleJoueur, _ : grilleJoueur) -> Bool {
+  /*  func verifObjetAbbatu(_ : ligne, _ : colonne, _ : positionGrilleJoueur, _ : grilleJoueur) -> Bool {
         for position in positionGrilleJoueur{
             var debut_ligne = position[0]
             var fin_ligne = position[1]
@@ -112,8 +112,8 @@ class AttaquerController: UIViewController {
                                 }
                             }
             }))
-        }
-    }*/
+        }*/
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         compteur = UserDefaults.standard.integer(forKey: "compteurValue")
