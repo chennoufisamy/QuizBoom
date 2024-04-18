@@ -14,6 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        // Réinitialiser toutes les données UserDefaults à l'ouverture de l'application
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         return true
     }
 
@@ -30,7 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
-
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+            // Réinitialiser toutes les données UserDefaults
+            UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        }
 }
 

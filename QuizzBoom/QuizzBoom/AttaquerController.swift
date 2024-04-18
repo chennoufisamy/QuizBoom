@@ -11,7 +11,7 @@ class AttaquerController: UIViewController {
     
     let nbObjets: Int = 5
     var gameOver : Bool = false
-    var compteur : Int = 0
+    var compteur : Int = UserDefaults.standard.integer(forKey: "compteurValue")
     var nomJoueur1 = UserDefaults.standard.string(forKey: "nomJoueur1Value")
     var nomJoueur2 = UserDefaults.standard.string(forKey: "nomJoueur2Value")
     var nbObjetAbbatusJ1 : Int = 0
@@ -25,19 +25,19 @@ class AttaquerController: UIViewController {
     @IBOutlet weak var compteurLabelJoueur2: UILabel!
     var choixDifficulte : String = ""
     @IBAction func choixDifficulte(_ sender: UIButton) {
-        compteur = 0
+        /*compteur = 0*/
         if sender.tag == 0{
             choixDifficulte = "facile"
-            compteur = 1
+            /*compteur = 1*/
         }else if sender.tag == 1{
             choixDifficulte = "moyenne"
-            compteur = 2
+            /*compteur = 2*/
         }else{
             choixDifficulte = "difficile"
-            compteur = 3
+            /*compteur = 3*/
         }
-        print("compteur \(compteur)")
-        UserDefaults.standard.set(compteur, forKey: "compteurValue")
+        /*print("compteur \(compteur)")*/
+        /*UserDefaults.standard.set(compteur, forKey: "compteurValue")*/
 
     }
     //Evoi de la variable choixDifficulte à classe QuizController
@@ -116,7 +116,7 @@ class AttaquerController: UIViewController {
     }*/
     override func viewDidLoad() {
         super.viewDidLoad()
-        compteur = UserDefaults.standard.integer(forKey: "compteurValue")
+        /*compteur = UserDefaults.standard.integer(forKey: "compteurValue")*/
         print("ciao \(nomJoueur1 ?? "")")
         print("ciao \(nomJoueur2 ?? "")")
         if nomJoueur1 == ""{

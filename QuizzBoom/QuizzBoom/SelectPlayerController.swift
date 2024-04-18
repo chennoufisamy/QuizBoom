@@ -51,6 +51,20 @@ class SelectPlayerController: UIViewController {
         UserDefaults.standard.set(nomJoueur2, forKey: "nomJoueur2Value")
     }
     
+    // Imprimer grilles pour test
+    func imprimerGrille(grille: [[String]]) {
+        for ligne in grille {
+            let ligneString = ligne.joined(separator: " ") // Convertir la ligne en une chaîne en joignant ses éléments avec un espace
+            print(ligneString)
+        }
+    }
+    
+    func imprimerGrilleInt(grille: [[Int]]) {
+        for ligne in grille {
+            let ligneString = ligne.joined(separator: " ") // Convertir la ligne en une chaîne en joignant ses éléments avec un espace
+            print(ligneString)
+        }
+    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //validerGrilleJ1(init).isEnabled = true
         let t = touches.randomElement()!
@@ -237,7 +251,9 @@ class SelectPlayerController: UIViewController {
                         objetsOutlet[objetTouche].center = casePosition
                         
                         //fonction pour restart la position de l'objet précédent afin de pouvoir exploiter la grille
+                        imprimerGrille(grille: grilleJoueur1tab)
                         
+                        imprimerGrilleInt(grille: positionGrilleJoueur2)
                                 
                     }else { print("ne pas placer")
                         retourAuDepart() }
@@ -250,6 +266,9 @@ class SelectPlayerController: UIViewController {
                         //Placer l'objet
                         let casePosition = CGPoint(x: xCorrigee, y: yCorrigee)
                         objetsOutlet[objetTouche].center = casePosition
+                        
+                        imprimerGrille(grille: grilleJoueur2tab)
+                        imprimerGrilleInt(grille: positionGrilleJoueur2)
                     }else {
                         retourAuDepart() }
                     
@@ -270,6 +289,9 @@ class SelectPlayerController: UIViewController {
         
         creerGrille(grilleJoueur : &grilleJoueur1tab)
         creerGrille(grilleJoueur : &grilleJoueur2tab)
+        
+        imprimerGrille(grille: grilleJoueur1tab)
+        imprimerGrille(grille: grilleJoueur2tab)
     }
     
 

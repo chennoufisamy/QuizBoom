@@ -45,17 +45,18 @@ class QuizController: UIViewController {
                            case "facile":
                                // Ajouter 1 au compteur
                                // Supposons que "counter" est une variable de votre ViewController qui garde la trace du score
-                               self.compteur += 1
+                               self.compteur = 1
                            case "moyenne":
                                // Ajouter 2 au compteur
-                               self.compteur += 2
+                               self.compteur = 2
                            case "difficile":
                                // Ajouter 3 au compteur
-                               self.compteur += 3
+                               self.compteur = 3
                                
                            default:
                                break
                            }
+                           UserDefaults.standard.set(self.compteur, forKey: "compteurValue")
                            // Déclencher la transition vers la vue suivante
                            if let joueur1AttaqueViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Joueur1attaque") as? AttaquerController {
                                self.navigationController?.pushViewController(joueur1AttaqueViewController, animated: true)
@@ -98,7 +99,7 @@ class QuizController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("difficulte \(difficulte)")
         let question1 = contenuQuiz(question: "Quel est la capitale de la France ?", image: nil, reponses: ["Londres", "Berlin", "Paris", "Rome"], reponseCorrecte: 2)
         let question2 = contenuQuiz(question: "Quel est le nombre de jours dans une année bissextile ?", image: nil, reponses: ["364", "365", "366", "367"], reponseCorrecte: 2)
         let question3 = contenuQuiz(question: "Quel est le plus grand animal terrestre ?", image: nil, reponses: ["Éléphant", "Girafe", "Hippopotame", "Rhinocéros"], reponseCorrecte: 0)
