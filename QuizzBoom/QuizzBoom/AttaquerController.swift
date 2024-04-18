@@ -30,27 +30,15 @@ class AttaquerController: UIViewController {
     @IBOutlet weak var compteurLabelJoueur2: UILabel!
     var choixDifficulte : String = ""
     @IBAction func choixDifficulte(_ sender: UIButton) {
-        /*compteur = 0*/
         if sender.tag == 0{
             choixDifficulte = "facile"
-            /*compteur = 1*/
+            UserDefaults.standard.set(choixDifficulte, forKey: "choixDifficulte")
         }else if sender.tag == 1{
             choixDifficulte = "moyenne"
-            /*compteur = 2*/
+            UserDefaults.standard.set(choixDifficulte, forKey: "choixDifficulte")
         }else{
             choixDifficulte = "difficile"
-            /*compteur = 3*/
-        }
-        /*print("compteur \(compteur)")*/
-        /*UserDefaults.standard.set(compteur, forKey: "compteurValue")*/
-
-    }
-    //Evoi de la variable choixDifficulte à classe QuizController
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "versQuiz" {
-            if let destinationVC = segue.destination as? QuizController {
-                destinationVC.difficulte = choixDifficulte
-            }
+            UserDefaults.standard.set(choixDifficulte, forKey: "choixDifficulte")
         }
     }
     
@@ -145,7 +133,7 @@ class AttaquerController: UIViewController {
         
         positionGrilleJoueur2 = UserDefaults.standard.array(forKey: "positionGrilleJoueur2") as? [[Int]]
         
-        if let grilleJoueur1tab = grilleJoueur1tab {
+       /* if let grilleJoueur1tab = grilleJoueur1tab {
             for ligne in grilleJoueur1tab {
                 let ligneString = ligne.joined(separator: " ") // Convertir la ligne en une chaîne en joignant ses éléments avec un espace
                 print(ligneString)
@@ -167,7 +155,7 @@ class AttaquerController: UIViewController {
             for ligne in positionGrilleJoueur2 {
                 let ligneString = ligne.map { String($0) }.joined(separator: " ") // Convertir la ligne en une chaîne en joignant ses éléments avec un espace
                 print(ligneString)
-            }}
+            }}*/
     }
 
     /*

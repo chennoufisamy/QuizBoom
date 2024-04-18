@@ -272,10 +272,10 @@ class SelectPlayerController: UIViewController {
                         let casePosition = CGPoint(x: xCorrigee, y: yCorrigee)
                         objetsOutlet[objetTouche].center = casePosition
                         
-                        imprimerGrille(grille: grilleJoueur1tab, message : "grille J1")
+                        /*imprimerGrille(grille: grilleJoueur1tab, message : "grille J1")
                         imprimerGrilleInt(grille: positionGrilleJoueur1, message : "grille J1 positions")
                         imprimerGrille(grille: grilleJoueur2tab, message : "grille J2")
-                        imprimerGrilleInt(grille: positionGrilleJoueur2, message : "grille J2 positions")
+                        imprimerGrilleInt(grille: positionGrilleJoueur2, message : "grille J2 positions")*/
                     }else {
                         retourAuDepart() }
                     
@@ -318,8 +318,8 @@ class SelectPlayerController: UIViewController {
             positionGrilleJoueur2 = positionSavedGrille2
         }
 
-        imprimerGrille(grille: grilleJoueur1tab, message: "grille J1")
-        imprimerGrille(grille: grilleJoueur2tab, message: "grille J2")
+        /*imprimerGrille(grille: grilleJoueur1tab, message: "grille J1")
+        imprimerGrille(grille: grilleJoueur2tab, message: "grille J2")*/
     }
 
     

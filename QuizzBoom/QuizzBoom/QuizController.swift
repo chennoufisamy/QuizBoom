@@ -17,7 +17,7 @@ struct contenuQuiz{
 class QuizController: UIViewController {
     
     //choix du joueur de la difficulte de la question (envvoyée par laa classe AttaquerController
-    var difficulte: String = ""
+    var choixDifficulte = UserDefaults.standard.string(forKey: "choixDifficulte")
     var questionsFaciles:[contenuQuiz] =  []
     var questionsMoyennes:[contenuQuiz] =  []
     var questionsDifficiles:[contenuQuiz] =  []
@@ -40,17 +40,16 @@ class QuizController: UIViewController {
                        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
                            NSLog("The \"OK\" alert occured.")
                            
-                           // Augmenter le compteur en fonction de la difficulté de la question
-                           switch self.difficulte {
+                           // Changer le compteur en fonction de la difficulté de la question
+                           switch self.choixDifficulte {
                            case "facile":
-                               // Ajouter 1 au compteur
-                               // Supposons que "counter" est une variable de votre ViewController qui garde la trace du score
+                               // Affecter 1 au compteur
                                self.compteur = 1
                            case "moyenne":
-                               // Ajouter 2 au compteur
+                               // Affecter 2 au compteur
                                self.compteur = 2
                            case "difficile":
-                               // Ajouter 3 au compteur
+                               // Affecter 3 au compteur
                                self.compteur = 3
                                
                            default:
@@ -99,7 +98,7 @@ class QuizController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("difficulte \(difficulte)")
+        print("difficulte \(choixDifficulte ?? "on sait pas la diff")")
         let question1 = contenuQuiz(question: "Quel est la capitale de la France ?", image: nil, reponses: ["Londres", "Berlin", "Paris", "Rome"], reponseCorrecte: 2)
         let question2 = contenuQuiz(question: "Quel est le nombre de jours dans une année bissextile ?", image: nil, reponses: ["364", "365", "366", "367"], reponseCorrecte: 2)
         let question3 = contenuQuiz(question: "Quel est le plus grand animal terrestre ?", image: nil, reponses: ["Éléphant", "Girafe", "Hippopotame", "Rhinocéros"], reponseCorrecte: 0)
@@ -114,7 +113,7 @@ class QuizController: UIViewController {
         questionsFaciles.append(contentsOf: [question1, question2, question3])
         questionsMoyennes.append(contentsOf: [question4, question5, question6])
         questionsDifficiles.append(contentsOf: [question7, question8, question9])
-        affichageQuestion(difficulte: difficulte)
+        affichageQuestion(difficulte: choixDifficulte!)
         
     }
     
