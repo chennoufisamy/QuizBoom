@@ -112,8 +112,8 @@ class AttaquerController: UIViewController {
                                 }
                             }
             }))
-        }*/
-    }
+        }
+    }*/
     override func viewDidLoad() {
         super.viewDidLoad()
         compteur = UserDefaults.standard.integer(forKey: "compteurValue")

@@ -53,6 +53,7 @@ class SelectPlayerController: UIViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //validerGrilleJ1(init).isEnabled = true
         let t = touches.randomElement()!
         let p = t.location(in: view)
         print("Vous avez touché l'écran en \(p.x), \(p.y)")
