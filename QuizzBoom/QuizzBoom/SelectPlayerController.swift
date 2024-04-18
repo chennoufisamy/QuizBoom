@@ -32,7 +32,6 @@ class SelectPlayerController: UIViewController {
     let nbObjets: Int = 5
     let grilleSize = CGSize(width: 350, height: 350) // Taille de la grille
     let caseSize = CGSize(width: 50, height: 50) // Taille d'une case de la grille
-    //git est passé par là
     
     // pour quand on place 5 objets les autres deviennent hide
     var nbObjetsPlaces: Int = 0
@@ -153,7 +152,6 @@ class SelectPlayerController: UIViewController {
             grilleJoueur.append(ligne)
             
         }
-        print ("ok la first step done")
     }
     
     
@@ -183,7 +181,6 @@ class SelectPlayerController: UIViewController {
                 for c in colonneDepart...colonneFin{
                     grilleJoueur[l][c] = "O"
                 }
-                print ("jusque ici on suit")
         }
     }
         return valide
@@ -199,7 +196,7 @@ class SelectPlayerController: UIViewController {
         if objetTouche == -1 {
             return
         }
-        if (objetTouche != -1) && (touchLocation.x < 350) && (touchLocation.y < 500 && touchLocation.y > 200 ) && ((objetsOutlet[objetTouche].tag >= 0 && objetsOutlet[objetTouche].tag <= 4) || (objetsOutlet[objetTouche].tag>=10 && objetsOutlet[objetTouche].tag<=14)){
+        if (objetTouche != -1) && ((touchLocation.x > 25 && touchLocation.x < 350) && (touchLocation.y > 200 && touchLocation.y < 500)) && ((objetsOutlet[objetTouche].tag >= 0 && objetsOutlet[objetTouche].tag <= 4) || (objetsOutlet[objetTouche].tag>=10 && objetsOutlet[objetTouche].tag<=14)){
             
             print("calculs objet")
             //recuperer largeur objet et le diviser par 2
@@ -224,41 +221,46 @@ class SelectPlayerController: UIViewController {
             colonneDepart = (xCorrigee / 50) - 1
             colonneFin = (((xCorrigee - 50) + Int(largeurObjet) * 2) / 50) - 1
             
-            print("x : \(xCorrigee), y : \(yCorrigee)")
+            /*print("x : \(xCorrigee), y : \(yCorrigee)")
             print("ligneDepart : \(ligneDepart), ligneFin : \(ligneFin)")
-            print("colonneDepart : \(colonneDepart), colonneFin : \(colonneFin)")
+            print("colonneDepart : \(colonneDepart), colonneFin : \(colonneFin)")*/
             
             //Si on est sur la view du Joueur 1 et validerPlaceObjet == true
-            if (self.restorationIdentifier == "1"){
-                if (validerPlaceObjet(ligneDepart: ligneDepart, ligneFin: ligneFin, colonneDepart: colonneDepart, colonneFin: colonneFin, grilleJoueur: &grilleJoueur1tab, positionGrilleJoueur: &positionGrilleJoueur1) == true) {
-                    //Placer l'objet
-                    let casePosition = CGPoint(x: xCorrigee, y: yCorrigee)
-                    objetsOutlet[objetTouche].center = casePosition
-                    
-                    //fonction pour restart la position de l'objet précédent afin de pouvoir exploiter la grille
-                    
-                            
-                }else { print("ne pas placer")
-                    resetEmplacementsGrille(grilleJoueur: &grilleJoueur1tab, positionGrilleJoueur: positionGrilleJoueur1)
-                    retourAuDepart() }
-            }
-            //Si on est sur la view du Joueur 2 et validerPlaceObjet == true
-            else if (self.restorationIdentifier == "2"){
-                
-                if (validerPlaceObjet(ligneDepart: ligneDepart, ligneFin: ligneFin, colonneDepart: colonneDepart, colonneFin: colonneFin, grilleJoueur: &grilleJoueur2tab, positionGrilleJoueur: &positionGrilleJoueur2) == true) {
-                    
-                    //Placer l'objet
-                    let casePosition = CGPoint(x: xCorrigee, y: yCorrigee)
-                    objetsOutlet[objetTouche].center = casePosition
-                    // Réinitialiser les emplacements de la grille pour permettre de placer d'autres objets à nouveau
-                resetEmplacementsGrille(grilleJoueur: &grilleJoueur2tab, positionGrilleJoueur: positionGrilleJoueur2)
+            if (ligneDepart >= 0 && ligneFin <= 6){
+                print("ligne entre 0 et 6")
+                if (self.restorationIdentifier == "1"){
+                    print("identifieer 1 ")
+                    if (validerPlaceObjet(ligneDepart: ligneDepart, ligneFin: ligneFin, colonneDepart: colonneDepart, colonneFin: colonneFin, grilleJoueur: &grilleJoueur1tab, positionGrilleJoueur: &positionGrilleJoueur1) == true) {
+                        print("validerPlaceObjet true")
+                        //Placer l'objet
+                        let casePosition = CGPoint(x: xCorrigee, y: yCorrigee)
+                        objetsOutlet[objetTouche].center = casePosition
                         
-                }else {retourAuDepart() }
-                
-            }else {
-                print("ne pas calculer")
-                retourAuDepart() }
-        }
+                        //fonction pour restart la position de l'objet précédent afin de pouvoir exploiter la grille
+                        
+                                
+                    }else { print("ne pas placer")
+                        retourAuDepart() }
+                }
+                //Si on est sur la view du Joueur 2 et validerPlaceObjet == true
+                else if (self.restorationIdentifier == "2"){
+                    
+                    if (validerPlaceObjet(ligneDepart: ligneDepart, ligneFin: ligneFin, colonneDepart: colonneDepart, colonneFin: colonneFin, grilleJoueur: &grilleJoueur2tab, positionGrilleJoueur: &positionGrilleJoueur2) == true) {
+                        
+                        //Placer l'objet
+                        let casePosition = CGPoint(x: xCorrigee, y: yCorrigee)
+                        objetsOutlet[objetTouche].center = casePosition
+                    }else {
+                        retourAuDepart() }
+                    
+                }else {
+                    print("ne pas calculer")
+                    retourAuDepart() }
+            } else{
+                print("ligne pas entre 0 et 6")}
+        }else{
+            print("hors grille")
+            retourAuDepart()}
     }
     
     override func viewDidLoad() {
