@@ -14,8 +14,13 @@ class AttaquerController: UIViewController {
     var compteur : Int = UserDefaults.standard.integer(forKey: "compteurValue")
     var nomJoueur1 = UserDefaults.standard.string(forKey: "nomJoueur1Value")
     var nomJoueur2 = UserDefaults.standard.string(forKey: "nomJoueur2Value")
-    var nbObjetAbbatusJ1 : Int = 0
-    var nbObjetAbbatusJ2 : Int = 0
+    var nbObjetsAbbatusJ1 : Int = 0
+    var nbObjetsAbbatusJ2 : Int = 0
+    var grilleJoueur1tab: [[String]]?
+    var grilleJoueur2tab: [[String]]?
+    var positionGrilleJoueur1: [[Int]]?
+    var positionGrilleJoueur2: [[Int]]?
+    
     @IBOutlet weak var joueur1MessageLabel: UILabel!
     
     @IBOutlet weak var joueur2messageLabel: UILabel!
@@ -49,15 +54,15 @@ class AttaquerController: UIViewController {
         }
     }
     
-  /*  func verifObjetAbbatu(_ : ligne, _ : colonne, _ : positionGrilleJoueur, _ : grilleJoueur) -> Bool {
+    func verifObjetAbbatu(ligne: Int,colonne : Int,positionGrilleJoueur : [[Int]],grilleJoueur : [[String]]) -> Bool {
         for position in positionGrilleJoueur{
-            var debut_ligne = position[0]
-            var fin_ligne = position[1]
-            var debut_colonne = position[2]
-            var fin_colonne = position[3]
-            if debut_ligne <= ligne <= fin_ligne && debut_colonne <= colonne <= fin_colonne{
-                for l in debut_ligne...fin_ligne{
-                    for c in debut_colonne...fin_colonne{
+            var debutLigne = position[0]
+            var finLigne = position[1]
+            var debutColonne = position[2]
+            var finColonne = position[3]
+            if (debutLigne <= ligne && ligne <= finLigne) && (debutColonne <= colonne && colonne <= finColonne){
+                for l in debutLigne...finLigne{
+                    for c in debutColonne...finColonne{
                         if grilleJoueur[l][c] != "X"{
                             return false
                         }
@@ -68,14 +73,14 @@ class AttaquerController: UIViewController {
         return true
     }
     
-    func attaquer(_ : grilleJoueur, _ : nbObjetsAbbatus, _: compteur ){
+    func attaquer(grilleJoueur : inout [[String]], positionGrilleJoueur : inout [[Int]], nbObjetsAbbatus : inout Int,compteur : inout Int){
         
         var ligne : Int = -1
         var colonne : Int = -1
         while compteur > 0 {
             
             // fonction qui permet à l'utilisateur de choisir une case à attaquer et qui return la ligne et la colonne de la case choisie
-            (ligne, colonne) = attaquerCase()
+            /*(ligne, colonne) = attaquerCase()*/
             
             /// Si aucun objet placé sur cette case
             if grilleJoueur[ligne][colonne] == "."{
@@ -86,10 +91,10 @@ class AttaquerController: UIViewController {
                 grilleJoueur[ligne][colonne] = "X"
                 let alert = UIAlertController(title: "Attaque réussi!", message: "Bingo, tu as touché un objet!", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in
-                    if verifObjetAbbatu(ligne,colonne,positionGrilleJoueur,grilleJoueur){ //Si objet abbatu
+                    if self.verifObjetAbbatu(ligne: ligne,colonne: colonne, positionGrilleJoueur: self.positionGrilleJoueur1!, grilleJoueur: self.grilleJoueur1tab!){ //Si objet abbatu
                         let alert = UIAlertController(title: "Objet détrui!", message: "Un objet a été détrui.", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: {_ in}))
-                        nbObjetAbbatus += 1
+                        self.nbObjetsAbbatusJ1 += 1
                     }
                 }))
             }
@@ -98,8 +103,8 @@ class AttaquerController: UIViewController {
         
     }
     
-    func verifGameOver(_ : nbObjetsAbbatus){
-        if nbObjets == nbObjetAbbatus{
+    func verifGameOver(nbObjetsAbbatus : Int){
+        if nbObjets == nbObjetsAbbatus{
             gameOver = true
             let alert = UIAlertController(title: "Game Over", message: "Tu as gagné!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("Revenir à l'accueil", comment: "Default action"), style: .default, handler: {_ in
@@ -113,7 +118,7 @@ class AttaquerController: UIViewController {
                             }
             }))
         }
-    }*/
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         /*compteur = UserDefaults.standard.integer(forKey: "compteurValue")*/
@@ -131,6 +136,38 @@ class AttaquerController: UIViewController {
         }
         compteurLabelJoueur1?.text = "Nombre de bombes : \(compteur)"
         print("compteur 2 \(compteur)")
+        
+        grilleJoueur1tab = UserDefaults.standard.array(forKey: "grilleJoueur1tab") as? [[String]]
+               
+        grilleJoueur2tab = UserDefaults.standard.array(forKey: "grilleJoueur2tab") as? [[String]]
+        
+        positionGrilleJoueur1 = UserDefaults.standard.array(forKey: "positionGrilleJoueur1") as? [[Int]]
+        
+        positionGrilleJoueur2 = UserDefaults.standard.array(forKey: "positionGrilleJoueur2") as? [[Int]]
+        
+        if let grilleJoueur1tab = grilleJoueur1tab {
+            for ligne in grilleJoueur1tab {
+                let ligneString = ligne.joined(separator: " ") // Convertir la ligne en une chaîne en joignant ses éléments avec un espace
+                print(ligneString)
+            }
+        }
+        if let positionGrilleJoueur1 = positionGrilleJoueur1 {
+            for ligne in positionGrilleJoueur1 {
+                let ligneString = ligne.map { String($0) }.joined(separator: " ") // Convertir la ligne en une chaîne en joignant ses éléments avec un espace
+                print(ligneString)
+            }}
+        
+       if let grilleJoueur2tab = grilleJoueur2tab {
+            for ligne in grilleJoueur2tab {
+                let ligneString = ligne.joined(separator: " ") // Convertir la ligne en une chaîne en joignant ses éléments avec un espace
+                print(ligneString)
+            }
+        }
+        if let positionGrilleJoueur2 = positionGrilleJoueur2 {
+            for ligne in positionGrilleJoueur2 {
+                let ligneString = ligne.map { String($0) }.joined(separator: " ") // Convertir la ligne en une chaîne en joignant ses éléments avec un espace
+                print(ligneString)
+            }}
     }
 
     /*

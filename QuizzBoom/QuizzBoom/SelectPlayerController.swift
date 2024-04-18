@@ -43,25 +43,33 @@ class SelectPlayerController: UIViewController {
         nomJoueur1 = nomJoueur1Outlet.text!
         print("joueur 1 : \(nomJoueur1)")
         UserDefaults.standard.set(nomJoueur1, forKey: "nomJoueur1Value")
+        UserDefaults.standard.set(grilleJoueur1tab, forKey: "grilleJoueur1tab")
+        UserDefaults.standard.set(positionGrilleJoueur1, forKey: "positionGrilleJoueur1")
     }
     
     @IBAction func validerGrilleJ2(_ sender: UIButton) {
         nomJoueur2 = nomJoueur2Outlet.text!
         print("joueur 2 : \(nomJoueur2)")
         UserDefaults.standard.set(nomJoueur2, forKey: "nomJoueur2Value")
+        UserDefaults.standard.set(grilleJoueur2tab, forKey: "grilleJoueur2tab")
+        UserDefaults.standard.set(positionGrilleJoueur2, forKey: "positionGrilleJoueur2")
     }
     
     // Imprimer grilles pour test
-    func imprimerGrille(grille: [[String]]) {
+    func imprimerGrille(grille: [[String]], message : String) {
+        
+        print(message)
         for ligne in grille {
             let ligneString = ligne.joined(separator: " ") // Convertir la ligne en une chaîne en joignant ses éléments avec un espace
             print(ligneString)
         }
     }
     
-    func imprimerGrilleInt(grille: [[Int]]) {
+    func imprimerGrilleInt(grille: [[Int]], message : String) {
+        
+        print(message)
         for ligne in grille {
-            let ligneString = ligne.joined(separator: " ") // Convertir la ligne en une chaîne en joignant ses éléments avec un espace
+            let ligneString = ligne.map { String($0) }.joined(separator: " ") // Convertir la ligne en une chaîne en joignant ses éléments avec un espace
             print(ligneString)
         }
     }
@@ -119,7 +127,7 @@ class SelectPlayerController: UIViewController {
         }
         objetTouche = -1 // le doigt n'est pas dans un objet
     }
-    
+
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         let t = touches.randomElement()!
         let p = t.location(in: view)
@@ -251,9 +259,6 @@ class SelectPlayerController: UIViewController {
                         objetsOutlet[objetTouche].center = casePosition
                         
                         //fonction pour restart la position de l'objet précédent afin de pouvoir exploiter la grille
-                        imprimerGrille(grille: grilleJoueur1tab)
-                        
-                        imprimerGrilleInt(grille: positionGrilleJoueur2)
                                 
                     }else { print("ne pas placer")
                         retourAuDepart() }
@@ -267,8 +272,10 @@ class SelectPlayerController: UIViewController {
                         let casePosition = CGPoint(x: xCorrigee, y: yCorrigee)
                         objetsOutlet[objetTouche].center = casePosition
                         
-                        imprimerGrille(grille: grilleJoueur2tab)
-                        imprimerGrilleInt(grille: positionGrilleJoueur2)
+                        imprimerGrille(grille: grilleJoueur1tab, message : "grille J1")
+                        imprimerGrilleInt(grille: positionGrilleJoueur1, message : "grille J1 positions")
+                        imprimerGrille(grille: grilleJoueur2tab, message : "grille J2")
+                        imprimerGrilleInt(grille: positionGrilleJoueur2, message : "grille J2 positions")
                     }else {
                         retourAuDepart() }
                     
@@ -276,7 +283,9 @@ class SelectPlayerController: UIViewController {
                     print("ne pas calculer")
                     retourAuDepart() }
             } else{
-                print("ligne pas entre 0 et 6")}
+                print("ligne pas entre 0 et 6")
+                retourAuDepart()
+            }
         }else{
             print("hors grille")
             retourAuDepart()}
@@ -286,13 +295,33 @@ class SelectPlayerController: UIViewController {
         super.viewDidLoad()
         nomJoueur1 = UserDefaults.standard.string(forKey: "nomJoueur1Value") ?? ""
         nomJoueur2 = UserDefaults.standard.string(forKey: "nomJoueur2Value") ?? ""
-        
-        creerGrille(grilleJoueur : &grilleJoueur1tab)
-        creerGrille(grilleJoueur : &grilleJoueur2tab)
-        
-        imprimerGrille(grille: grilleJoueur1tab)
-        imprimerGrille(grille: grilleJoueur2tab)
+
+        if let savedGrille1 = UserDefaults.standard.array(forKey: "grilleJoueur1tab") as? [[String]] {
+            grilleJoueur1tab = savedGrille1
+        } else {
+            print("creer grille 1")
+            creerGrille(grilleJoueur: &grilleJoueur1tab)
+        }
+
+        if let savedGrille2 = UserDefaults.standard.array(forKey: "grilleJoueur2tab") as? [[String]] {
+            grilleJoueur2tab = savedGrille2
+        } else {
+            print("creer grille 2")
+            creerGrille(grilleJoueur: &grilleJoueur2tab)
+        }
+
+        if let positionSavedGrille1 = UserDefaults.standard.array(forKey: "positionGrilleJoueur1") as? [[Int]] {
+            positionGrilleJoueur1 = positionSavedGrille1
+        }
+
+        if let positionSavedGrille2 = UserDefaults.standard.array(forKey: "positionGrilleJoueur2") as? [[Int]] {
+            positionGrilleJoueur2 = positionSavedGrille2
+        }
+
+        imprimerGrille(grille: grilleJoueur1tab, message: "grille J1")
+        imprimerGrille(grille: grilleJoueur2tab, message: "grille J2")
     }
+
     
 
     /*
