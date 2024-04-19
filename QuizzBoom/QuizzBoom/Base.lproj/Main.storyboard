@@ -802,7 +802,7 @@ Le premier joueur à épuiser tous les points de vie de son adversaire remporte 
             <objects>
                 <viewController id="6K0-1T-AE0" customClass="QuizController" customModule="QuizzBoom" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nih-cF-o4i">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNQ-9u-ool">
@@ -1499,7 +1499,7 @@ Le premier joueur à épuiser tous les points de vie de son adversaire remporte 
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="n8f-8l-mTo"/>
+        <segue reference="QfY-Ml-Myb"/>
         <segue reference="bvb-IM-9sa"/>
     </inferredMetricsTieBreakers>
     <resources>

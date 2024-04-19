@@ -52,7 +52,6 @@ class QuizController: UIViewController {
             reponses[sender.tag].textColor = UIColor.green
             let alert = UIAlertController(title: "Bravooo ", message: "C'est la bonne réponse !", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
-                NSLog("The \"OK\" alert occured.")
                    
                 // Changer le compteur en fonction de la difficulté de la question
                 switch self.choixDifficulte {
@@ -71,12 +70,10 @@ class QuizController: UIViewController {
                    
                 // Transition vers la vue d'attaque appropriée en fonction du tour du joueur
                 if self.estTourJoueur1 {
-                    self.estTourJoueur1 = false // Passer au tour du joueur 2
                     if let joueur1AttaqueViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Joueur1attaque") as? AttaquerController {
                         self.navigationController?.pushViewController(joueur1AttaqueViewController, animated: true)
                     }
                 } else {
-                    self.estTourJoueur1 = true // Passer au tour du joueur 1
                     if let joueur2AttaqueViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Joueur2attaque") as? AttaquerController {
                         self.navigationController?.pushViewController(joueur2AttaqueViewController, animated: true)
                     }
@@ -111,6 +108,8 @@ class QuizController: UIViewController {
                             }
                         }
                     }))
+            
+                    // Afficher les alert
                     self.present(alert, animated: true, completion: nil)
                 }
             }

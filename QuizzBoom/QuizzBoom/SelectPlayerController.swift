@@ -33,12 +33,13 @@ class SelectPlayerController: UIViewController {
     let grilleSize = CGSize(width: 350, height: 350) // Taille de la grille
     let caseSize = CGSize(width: 50, height: 50) // Taille d'une case de la grille
     
-    // pour quand on place 5 objets les autres deviennent hide
+    // pour quand on place 5 objets les autres deviennent hide (pas encore implemente)
     var nbObjetsPlaces: Int = 0
     
     var objetTouche : Int = -1
     var pointDepart : CGPoint = CGPoint(x:0,y:0)
     
+    // Valider la grille joueur 1
     @IBAction func validerGrilleJ1(_ sender: UIButton) {
         nomJoueur1 = nomJoueur1Outlet.text!
         print("joueur 1 : \(nomJoueur1)")
@@ -47,6 +48,7 @@ class SelectPlayerController: UIViewController {
         UserDefaults.standard.set(positionGrilleJoueur1, forKey: "positionGrilleJoueur1")
     }
     
+    // Valider la grille joueur 2
     @IBAction func validerGrilleJ2(_ sender: UIButton) {
         nomJoueur2 = nomJoueur2Outlet.text!
         print("joueur 2 : \(nomJoueur2)")
@@ -57,7 +59,6 @@ class SelectPlayerController: UIViewController {
     
     // Imprimer grilles pour test
     func imprimerGrille(grille: [[String]], message : String) {
-        
         print(message)
         for ligne in grille {
             let ligneString = ligne.joined(separator: " ") // Convertir la ligne en une chaîne en joignant ses éléments avec un espace
@@ -66,13 +67,13 @@ class SelectPlayerController: UIViewController {
     }
     
     func imprimerGrilleInt(grille: [[Int]], message : String) {
-        
         print(message)
         for ligne in grille {
             let ligneString = ligne.map { String($0) }.joined(separator: " ") // Convertir la ligne en une chaîne en joignant ses éléments avec un espace
             print(ligneString)
         }
     }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //validerGrilleJ1(init).isEnabled = true
         let t = touches.randomElement()!
@@ -136,6 +137,8 @@ class SelectPlayerController: UIViewController {
             }
         
         }
+    
+    // fonction pour réinitialiser la grille non utilisee)
     func resetEmplacementsGrille(grilleJoueur: inout [[String]], positionGrilleJoueur: [[Int]]) {
         for position in positionGrilleJoueur {
             let ligneDepart = position[0]
@@ -151,7 +154,6 @@ class SelectPlayerController: UIViewController {
         }
     }
 
-    
     func retourAuDepart () {
         // Quand on lache un objet, on le rend petit
                 if (objetsOutlet[objetTouche].tag>=0 && objetsOutlet[objetTouche].tag<=4) || (objetsOutlet[objetTouche].tag>=10 && objetsOutlet[objetTouche].tag<=14) {
@@ -164,6 +166,7 @@ class SelectPlayerController: UIViewController {
         objetsOutlet[objetTouche].center = pointDepart
     }
     
+    //Creation de la grille
     func creerGrille(grilleJoueur : inout[[String]]){
         
         for _ in 0...tailleGrille - 1{
@@ -176,7 +179,7 @@ class SelectPlayerController: UIViewController {
         }
     }
     
-    
+    // Verifier la possibilite de placer un objet dans la grille
     func validerPlaceObjet(ligneDepart : Int,ligneFin : Int, colonneDepart : Int,colonneFin : Int, grilleJoueur : inout [[String]], positionGrilleJoueur : inout [[Int]]) -> Bool{
         
         var valide = true
@@ -184,17 +187,17 @@ class SelectPlayerController: UIViewController {
         for l in ligneDepart...ligneFin{
             for c in colonneDepart...colonneFin{
                 
-                if grilleJoueur[l][c] != "." {
+                if grilleJoueur[l][c] != "." { //Si il y a une case differente de "." on ne place pas l'objert
                     valide = false
                     sortieDuFor = true
                     break
                 }
             }
-            if sortieDuFor { //}== true{
+            if sortieDuFor { //Si on sort du for on sort de la fonction
                 break
             }
         }
-        if valide { //}== true{
+        if valide { //On modifie la grilleJoueur
             positionGrilleJoueur.append([ligneDepart,ligneFin,colonneDepart,colonneFin])
             for l in ligneDepart...ligneFin{
                 for c in colonneDepart...colonneFin{
@@ -215,9 +218,8 @@ class SelectPlayerController: UIViewController {
         if objetTouche == -1 {
             return
         }
-        if (objetTouche != -1) && ((touchLocation.x > 25 && touchLocation.x < 350) && (touchLocation.y > 200 && touchLocation.y < 500)) && ((objetsOutlet[objetTouche].tag >= 0 && objetsOutlet[objetTouche].tag <= 4) || (objetsOutlet[objetTouche].tag>=10 && objetsOutlet[objetTouche].tag<=14)){
+        if (objetTouche != -1) && ((touchLocation.x > 25 && touchLocation.x < 350) && (touchLocation.y > 200 && touchLocation.y < 500)) && ((objetsOutlet[objetTouche].tag >= 0 && objetsOutlet[objetTouche].tag <= 4) || (objetsOutlet[objetTouche].tag>=10 && objetsOutlet[objetTouche].tag<=14)){//Verifications afin de ne pas placer les objets en dehors de la grille et de faire en sorte que seulement les objets en varticale sont plaçables sur la grille
             
-            print("calculs objet")
             //recuperer largeur objet et le diviser par 2
             let largeurObjet = objetsOutlet[objetTouche].frame.width / 2
             
@@ -292,18 +294,17 @@ class SelectPlayerController: UIViewController {
         super.viewDidLoad()
         nomJoueur1 = UserDefaults.standard.string(forKey: "nomJoueur1Value") ?? ""
         nomJoueur2 = UserDefaults.standard.string(forKey: "nomJoueur2Value") ?? ""
-
+        
+        // Si il n'y a pas deja enregistres les donnes de la grille et de la position des objets on les cree sinon on prend les donees existantes
         if let savedGrille1 = UserDefaults.standard.array(forKey: "grilleJoueur1tab") as? [[String]] {
             grilleJoueur1tab = savedGrille1
         } else {
-            print("creer grille 1")
             creerGrille(grilleJoueur: &grilleJoueur1tab)
         }
 
         if let savedGrille2 = UserDefaults.standard.array(forKey: "grilleJoueur2tab") as? [[String]] {
             grilleJoueur2tab = savedGrille2
         } else {
-            print("creer grille 2")
             creerGrille(grilleJoueur: &grilleJoueur2tab)
         }
 
