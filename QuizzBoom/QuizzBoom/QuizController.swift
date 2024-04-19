@@ -63,16 +63,25 @@ class QuizController: UIViewController {
                        }))
                        self.present(alert, animated: true, completion: nil)
                    } else {
+                  
                        // Au lieu de déclencher la transition vers le QuizController, on déclenche la transition vers la vue "joueur 2 attaque"
                        let alert = UIAlertController(title: "Dommage !", message: "Ce n'est pas la bonne réponse", preferredStyle: .alert)
                        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
                            NSLog("The \"OK\" alert occured.")
                            if let joueur2AttaqueViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Joueur2attaque") as? AttaquerController {
                                self.navigationController?.pushViewController(joueur2AttaqueViewController, animated: true)
-                           } 
+                               
+                               // Charger un nouveau quiz pour le joueur 2
+                               self.affichageQuestion(difficulte: self.choixDifficulte!)
+                           }
                        }))
                        self.present(alert, animated: true, completion: nil)
+                    /*   if let joueur2AttaqueViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Joueur2attaque") as? AttaquerController {
+                               self.navigationController?.pushViewController(joueur2AttaqueViewController, animated: true)
+                           }
+                           } */
                    }
+
                }
     
     
@@ -105,9 +114,9 @@ class QuizController: UIViewController {
         let question4 = contenuQuiz(question: "Quel est le nom de la rivière qui traverse Paris ?", image: nil, reponses: ["Seine", "Loire", "Garonne", "Rhône"], reponseCorrecte: 0)
         let question5 = contenuQuiz(question: "Quel est le nom du premier président des États-Unis ?", image: nil, reponses: ["Abraham Lincoln", "George Washington", "Thomas Jefferson", "Andrew Jackson"], reponseCorrecte: 1)
         let question6 = contenuQuiz(question: "Quelle est la formule chimique de l'eau ?", image: nil, reponses: [ "NaCl", "CO2","H2O", "N2"], reponseCorrecte: 2)
-        let question7 = contenuQuiz(question: "Quel est le nom de la plus haute montagne du monde ?", image: nil, reponses: ["K2","Mont Everest", "Kangchenjunga", "Lhotse"], reponseCorrecte: 1)
+        let question7 = contenuQuiz(question: "Quel est le nom de la plus haute montagne du monde ?", image: UIImage(named: "montagne"), reponses: ["K2","Mont Everest", "Kangchenjunga", "Lhotse"], reponseCorrecte: 1)
         let question8 = contenuQuiz(question: "Quel est le nom de la plus petite particule subatomique ?", image: nil, reponses: ["Électron", "Photon", "Neutrino","Quark"], reponseCorrecte: 3)
-        let question9 = contenuQuiz(question: "Quel est le nom de la théorie scientifique qui explique l'origine de l'univers ?", image: nil, reponses: ["Big Bang", "Théorie des cordes", "Mécanique quantique", "Relativité générale"], reponseCorrecte: 0)
+        let question9 = contenuQuiz(question: "Quel est le nom de la théorie scientifique qui explique l'origine de l'univers ?", image: UIImage(named: "guerre"), reponses: ["Big Bang", "Théorie des cordes", "Mécanique quantique", "Relativité générale"], reponseCorrecte: 0)
                 
         // Ajout des questions dans les tableaux correspondants
         questionsFaciles.append(contentsOf: [question1, question2, question3])

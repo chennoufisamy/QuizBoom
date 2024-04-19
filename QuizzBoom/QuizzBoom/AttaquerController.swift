@@ -21,6 +21,8 @@ class AttaquerController: UIViewController {
     var positionGrilleJoueur1: [[Int]]?
     var positionGrilleJoueur2: [[Int]]?
     
+    
+    
     @IBOutlet weak var joueur1MessageLabel: UILabel!
     
     @IBOutlet weak var joueur2messageLabel: UILabel!
@@ -91,6 +93,39 @@ class AttaquerController: UIViewController {
         
     }
     
+  /*  func caseTouchee(_ sender: UITapGestureRecognizer) {
+            guard let caseTouchee = sender.view as? UIImageView else { return }
+            
+            // Obtenez les coordonnées de la case touchée
+            let ligne = caseTouchee.tag / 49
+            let colonne = caseTouchee.tag % 49
+            
+            // Vérifiez si la case touchée contient un objet
+            if caseContientObjet(ligne: ligne, colonne: colonne, positionGrille: positionGrilleJoueur1) {
+                // appel de la fonction attaquer
+                attaquer(grilleJoueur : grilleJoueur1tab, positionGrilleJoueur : positionGrilleJoueur1, nbObjetsAbbatus : 1,compteur : 1)
+            } else {
+                // La case ne contient pas d'objet, affichez un message à l'utilisateur ou effectuez une action appropriée
+                print("La case ne contient pas d'objet.")
+            }
+        }
+   */
+     
+    func caseContientObjet(ligne: Int, colonne: Int, positionGrille: [[Int]]) -> Bool {
+        for position in positionGrille {
+            let debutLigne = position[0]
+            let finLigne = position[1]
+            let debutColonne = position[2]
+            let finColonne = position[3]
+            if ligne >= debutLigne && ligne <= finLigne && colonne >= debutColonne && colonne <= finColonne {
+                // La case contient un objet
+                return true
+            }
+        }
+        return false
+    }
+     
+    
     func verifGameOver(nbObjetsAbbatus : Int){
         if nbObjets == nbObjetsAbbatus{
             gameOver = true
@@ -132,6 +167,13 @@ class AttaquerController: UIViewController {
         positionGrilleJoueur1 = UserDefaults.standard.array(forKey: "positionGrilleJoueur1") as? [[Int]]
         
         positionGrilleJoueur2 = UserDefaults.standard.array(forKey: "positionGrilleJoueur2") as? [[Int]]
+        
+        // Ajout des gestes de tap aux UIImageView représentant les cases de la grille
+            /*    for caseView in grilleJoueur1tab {
+                    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(caseTouchee(_:)))
+                    caseView.addGestureRecognizer(tapGesture)
+                }
+*/
         
        /* if let grilleJoueur1tab = grilleJoueur1tab {
             for ligne in grilleJoueur1tab {
