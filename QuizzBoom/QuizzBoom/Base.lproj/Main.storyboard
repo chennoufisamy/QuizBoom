@@ -1295,7 +1295,7 @@ Le premier joueur à épuiser tous les points de vie de son adversaire remporte 
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="grille" translatesAutoresizingMaskIntoConstraints="NO" id="Wxj-Uz-ORI">
-                                <rect key="frame" x="325" y="201" width="50" height="50"/>
+                                <rect key="frame" x="325" y="200" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="grille" translatesAutoresizingMaskIntoConstraints="NO" id="8Y7-qQ-zDQ">

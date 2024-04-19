@@ -183,9 +183,6 @@ class SelectPlayerController: UIViewController {
         var sortieDuFor = false
         for l in ligneDepart...ligneFin{
             for c in colonneDepart...colonneFin{
-                /* probleme d'index qui arrive souvent ici
-                l'erreur se déclenche lorsqu'on place des objets trop grand car les coordonées à ce moment là sont faussées
-                si la lignefin ou col fin est sup = 6, ça donne des soucis  */
                 
                 if grilleJoueur[l][c] != "." {
                     valide = false

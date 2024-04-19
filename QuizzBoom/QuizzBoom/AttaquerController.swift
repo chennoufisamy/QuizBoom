@@ -21,17 +21,16 @@ class AttaquerController: UIViewController {
     var positionGrilleJoueur1: [[Int]]?
     var positionGrilleJoueur2: [[Int]]?
     
-    
+    var remainingTouches: Int = 0
     
     @IBOutlet weak var joueur1MessageLabel: UILabel!
     
     @IBOutlet weak var joueur2messageLabel: UILabel!
-    /*@IBOutlet weak var joueur2messageLabel: UILabel!*/
-    
+
     @IBOutlet weak var compteurLabelJoueur1: UILabel!
     
     @IBOutlet weak var compteurLabelJoueur2: UILabel!
-    /*@IBOutlet weak var compteurLabelJoueur2: UILabel!*/
+    
     var choixDifficulte : String = ""
     @IBAction func choixDifficulte(_ sender: UIButton) {
         if sender.tag == 0{
@@ -64,17 +63,53 @@ class AttaquerController: UIViewController {
         }
         return true
     }
-    
-    func attaquer(grilleJoueur : inout [[String]], positionGrilleJoueur : inout [[Int]], nbObjetsAbbatus : inout Int,compteur : inout Int){
+    // Variable globale pour suivre le nombre d'itérations restantes pendant le tour du joueur
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        remainingTouches = compteur
+        // Appel de la fonction attaquer avec l'ensemble de touches reçu en paramètre
+        attaquer(grilleJoueur : &grilleJoueur1tab!, positionGrilleJoueur : &positionGrilleJoueur1!, nbObjetsAbbatus : &nbObjetsAbbatusJ1, compteur : &compteur, touches: touches)
+    }
+
+    func attaquerCase(_ touches: Set<UITouch>) -> (Int,Int){
+        let touch = touches.randomElement()!
+        let touchLocation = touch.location(in: view)
         
+        // rendre coordonée X un multiple de 50
+        var x = (((Int(touchLocation.x) - 25) / 50) * 50)
+        
+        // rendre coordonée Y un multiple de 50
+        var y = (((Int(touchLocation.y) - 200) / 50) * 50)
+        
+        //Diviser par 50 pour avoir la ligne et la colonne
+        x = (x / 50)
+        y = (y / 50)
+        
+        print(y)
+        print(x)
+        return (y,x)
+    }
+    
+    func attaquer(grilleJoueur : inout [[String]], positionGrilleJoueur : inout [[Int]], nbObjetsAbbatus : inout Int,compteur : inout Int, touches: Set<UITouch>){
+        
+        guard compteur > 0 else {
+                // Si compteur est <= 0, la fonction ne fait rien
+                return
+            }
+        // Réduire le compteur de touches restantes
+            remainingTouches -= 1
+        if remainingTouches >= 0 {
+        compteurLabelJoueur1?.text = "Nombre de bombes : \(remainingTouches)"
+        print("touches \(remainingTouches)")
         var ligne : Int = -1
         var colonne : Int = -1
-        while compteur > 0 {
             
             // fonction qui permet à l'utilisateur de choisir une case à attaquer et qui return la ligne et la colonne de la case choisie
-            /*(ligne, colonne) = attaquerCase()*/
+            let (l, c) = attaquerCase(touches)
+            ligne = l
+            colonne = c
             
-            /// Si aucun objet placé sur cette case
+            // Si aucun objet placé sur cette case
             if grilleJoueur[ligne][colonne] == "."{
                 grilleJoueur[ligne][colonne] = "#"
                 let alert = UIAlertController(title: "Attaque échoué", message: "Case vide, aucun objet n'a été touché", preferredStyle: .alert)
@@ -90,9 +125,8 @@ class AttaquerController: UIViewController {
                     }
                 }))
             }
-            compteur -= 1
+           compteur -= 1
         }
-        
     }
     
   /*  func caseTouchee(_ sender: UITapGestureRecognizer) {
