@@ -26,10 +26,12 @@ class AttaquerController: UIViewController {
     @IBOutlet weak var joueur1MessageLabel: UILabel!
     
     @IBOutlet weak var joueur2messageLabel: UILabel!
+    /*@IBOutlet weak var joueur2messageLabel: UILabel!*/
     
     @IBOutlet weak var compteurLabelJoueur1: UILabel!
     
     @IBOutlet weak var compteurLabelJoueur2: UILabel!
+    /*@IBOutlet weak var compteurLabelJoueur2: UILabel!*/
     var choixDifficulte : String = ""
     @IBAction func choixDifficulte(_ sender: UIButton) {
         if sender.tag == 0{
@@ -145,8 +147,8 @@ class AttaquerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         /*compteur = UserDefaults.standard.integer(forKey: "compteurValue")*/
-        print("ciao \(nomJoueur1 ?? "")")
-        print("ciao \(nomJoueur2 ?? "")")
+        /*print("ciao \(nomJoueur1 ?? "")")
+        print("ciao \(nomJoueur2 ?? "")")*/
         if nomJoueur1 == ""{
             joueur1MessageLabel?.text = "Joueur1, c'est ton tour!"
         } else{
